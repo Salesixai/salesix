@@ -13,17 +13,17 @@ interface TaskConfig {
 
 const taskConfigs: TaskConfig[] = [
   {
-    title: 'Email sorted',
+    title: 'AI Voice Agent Deployed',
     icon: (
       <svg className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
       </svg>
     ),
     status: 'completed',
     className: 'bg-muted border border-border text-muted-foreground',
   },
   {
-    title: 'Meeting scheduled',
+    title: 'AI Calls Started',
     icon: (
       <svg className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -33,7 +33,7 @@ const taskConfigs: TaskConfig[] = [
     className: 'bg-muted border border-border text-muted-foreground',
   },
   {
-    title: 'Reports generated',
+    title: 'Leads Qualified',
     icon: (
       <svg className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -43,7 +43,7 @@ const taskConfigs: TaskConfig[] = [
     className: 'bg-accent border border-border text-foreground',
   },
   {
-    title: 'Data analyzed',
+    title: 'Meetings Scheduled',
     icon: (
       <svg className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -101,7 +101,7 @@ export function AITaskExecution({
   return (
     <div className="w-full max-w-sm mx-auto px-6 space-y-3">
       {/* AI Brain Icon */}
-      <div className="flex justify-center mb-6">
+      <div className="flex justify-center mb-4">
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={{
@@ -152,7 +152,7 @@ export function AITaskExecution({
               delay: index * 0.2,
               ease: 'easeOut',
             }}
-            className={`flex items-center gap-3 p-3 rounded-lg transition-all duration-300 ${
+            className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 ${
               index <= currentTaskIndex ? task.className : 'bg-muted/30 border border-border/30 text-muted-foreground/50'
             }`}
           >
@@ -180,9 +180,9 @@ export function AITaskExecution({
             </div>
 
             {/* Task icon and title */}
-            <div className="flex items-center gap-2">
-              {task.icon}
-              <span className="text-sm font-medium">{task.title}</span>
+            <div className="flex items-center gap-3 flex-1 min-w-0">
+              <div className="flex-shrink-0">{task.icon}</div>
+              <span className="text-sm font-medium truncate">{task.title}</span>
             </div>
           </motion.div>
         ))}
@@ -218,9 +218,9 @@ export function ThirdBentoAnimation({
   return (
     <div
       ref={ref}
-      className="relative flex size-full items-center justify-center h-[300px] pt-10 overflow-hidden"
+      className="relative flex size-full items-center justify-center min-h-[400px] py-10 overflow-hidden"
     >
-      <div className="pointer-events-none absolute bottom-0 left-0 h-20 w-full bg-gradient-to-t from-background to-transparent z-20"></div>
+      <div className="pointer-events-none absolute bottom-0 left-0 h-12 w-full bg-gradient-to-t from-background to-transparent z-20"></div>
       <div className="flex items-center justify-center w-full h-full">
         <AITaskExecution
           shouldAnimate={shouldAnimate}

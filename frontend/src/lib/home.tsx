@@ -107,11 +107,11 @@ export const siteConfig = {
         />
       </svg>
     ),
-    badge: '100% OPEN SOURCE',
+    badge: 'NEXT-GEN AI AGENTIC PLATFORM',
     githubUrl: 'https://github.com/kortix-ai/suna',
-    title: 'Kortix – Build, manage and train your AI Workforce.',
+    title: 'Salesix – Build, manage and train your AI Workforce.',
     description:
-      'Kortix – open-source platform to build, manage and train your AI Workforce.',
+      'Salesix – Simplify operations and supercharge growth with Salesix—your AI-powered automation platform built for results.',
     inputPlaceholder: 'Ask Suna to...',
   },
   cloudPricingItems: [

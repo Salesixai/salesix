@@ -4,57 +4,58 @@ import { SectionHeader } from '@/components/home/section-header';
 import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
 import { 
-  FileText,
-  Image,
-  Presentation,
-  Globe,
-  BarChart3,
-  ShoppingCart,
-  Users,
-  Clock 
+  Bot,
+  Target,
+  Database,
+  UserPlus,
+  Mail,
+  MessageSquare,
+  Phone,
+  Workflow
 } from 'lucide-react';
 
 const capabilities = [
   {
-    title: 'Create Professional Documents',
-    description: 'Generate reports, proposals, contracts, and presentations that look like they came from a top agency. PDF, Word, PowerPoint - any format you need.',
-    icon: <FileText className="size-6" />,
+    title: 'AI Sales Agents',
+    description: 'Automate lead qualification, follow-ups, and deal closing with intelligent sales agents that learn from every interaction.',
+    icon: <Bot className="size-6" />,
   },
   {
-    title: 'Design Graphics & Visuals',
-    description: 'Create logos, social media graphics, infographics, and custom images from just a text description. No design skills required.',
-    icon: <Image className="size-6" />,
+    title: 'Marketing Automation',
+    description: 'Deploy AI agents that create, optimize, and execute marketing campaigns across multiple channels automatically.',
+    icon: <Target className="size-6" />,
   },
   {
-    title: 'Build Stunning Presentations',
-    description: 'Turn your ideas into polished slide decks with professional layouts, charts, and images sourced automatically.',
-    icon: <Presentation className="size-6" />,
+    title: 'Data Enrichment',
+    description: 'Transform raw data into actionable insights with AI agents that analyze trends, predict outcomes, and recommend strategies.',
+    icon: <Database className="size-6" />,
   },
   {
-    title: 'Research Anything Online',
-    description: 'Get comprehensive research reports on competitors, markets, trends, or any topic with verified sources and current data.',
-    icon: <Globe className="size-6" />,
+    title: 'Lead Generation',
+    description: 'Find and connect with the right customers using AI-curated data to personalize campaigns, target better, and boost engagement effortlessly.',
+    icon: <UserPlus className="size-6" />,
   },
   {
-    title: 'Analyze Your Data',
-    description: 'Upload spreadsheets, sales data, or any files and get insights, trends, forecasts, and beautiful charts in minutes.',
-    icon: <BarChart3 className="size-6" />,
+    title: 'Email Marketing AI',
+    description: 'Personalize email campaigns at scale with AI that crafts compelling content and optimizes send times for maximum engagement.',
+    icon: <Mail className="size-6" />,
   },
   {
-    title: 'Automate Online Tasks',
-    description: 'Fill out forms, collect data from websites, monitor prices, schedule posts, and handle repetitive web tasks while you sleep.',
-    icon: <ShoppingCart className="size-6" />,
+    title: 'SMS Marketing',
+    description: 'Reach customers instantly with AI-powered SMS campaigns that deliver the right message at the perfect moment.',
+    icon: <MessageSquare className="size-6" />,
+  },
+  {
+    title: 'Voice Agents',
+    description: 'Handle customer calls 24/7 with natural-sounding AI voice agents that provide support, qualify leads, and book appointments.',
+    icon: <Phone className="size-6" />,
   },
   {
     title: 'Manage Your Workflows',
     description: 'Set up automated processes for lead generation, customer follow-ups, content creation, and daily business operations.',
-    icon: <Users className="size-6" />,
+    icon: <Workflow className="size-6" />,
   },
-  {
-    title: 'Work Around the Clock',
-    description: 'Kortix never sleeps. Schedule tasks to run overnight, on weekends, or whenever you need work done without being there.',
-    icon: <Clock className="size-6" />,
-  },
+
 ];
 
 export function CapabilitiesSection() {
@@ -71,10 +72,10 @@ export function CapabilitiesSection() {
         <div className="max-w-6xl mx-auto border-l border-r border-border">
           <SectionHeader>
             <h2 className="text-3xl md:text-4xl font-medium tracking-tighter text-center text-balance pb-1">
-              What Can Kortix Do For You?
+              Your Business, Powered by Salesix
             </h2>
             <p className="text-muted-foreground text-center text-balance font-medium">
-              From content creation to data analysis, Kortix handles the work that takes you hours in just minutes.
+              A unified network of AI agents designed to automate, connect, and elevate every aspect of your operations.
             </p>
           </SectionHeader>
 

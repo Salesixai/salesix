@@ -11,21 +11,21 @@ export function BentoSection() {
       content: <FirstBentoAnimation />,
       title: 'Describe your needs',
       description:
-        'Tell Kortix what you need and customize your AI worker for your use cases.',
+        'Tell Salesix exactly what you need and build custom AI agents tailored to your specific business goals and workflows.',
     },
     {
       id: 2,
       content: <SecondBentoAnimation />,
       title: 'Connect 100s of tools',
       description:
-        'Connect to your favorite tools and services with our extensive library of integrations.',
+        'Seamlessly integrate with your favorite tools and platforms using Salesix’s extensive library of powerful, ready-to-use integrations.',
     },
     {
       id: 3,
       content: <ThirdBentoAnimation />,
       title: 'Deploy and personalize',
       description:
-        'Watch your agent handle complex tasks and workflows with advanced AI reasoning.',
+        'Launch AI agents that handle complex tasks intelligently—aligned with your brand, goals, and workflows.',
     },
   ];
 
@@ -38,10 +38,10 @@ export function BentoSection() {
         <div className="max-w-6xl mx-auto border-l border-r border-border">
           <SectionHeader>
             <h2 className="text-3xl md:text-4xl font-medium tracking-tighter text-center text-balance pb-1">
-              Create a New AI Worker in 3 Simple Steps
+              Build Your AI Team in 3 Simple Steps
             </h2>
             <p className="text-muted-foreground text-center text-balance font-medium">
-              Customize powerful AI Workers to work on your tailored use cases.
+              Customize powerful AI agents to work on your tailored use cases.
             </p>
           </SectionHeader>
 
