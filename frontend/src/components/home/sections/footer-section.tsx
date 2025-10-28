@@ -20,10 +20,10 @@ export function FooterSection() {
   }, []);
 
   const logoSrc = !mounted
-    ? '/kortix-logo.svg'
+    ? '/salesix-logo-black.png'
     : resolvedTheme === 'dark'
-      ? '/kortix-logo-white.svg'
-      : '/kortix-logo.svg';
+      ? '/salesix-logo-white.png'
+      : '/salesix-logo-black.png';
 
   return (
     <footer id="footer" className="w-full pb-0 px-6">
@@ -34,9 +34,10 @@ export function FooterSection() {
               <Link href="/" className="flex items-center gap-2">
                 <Image
                   src={logoSrc}
-                  alt="Kortix Logo"
-                  width={122}
-                  height={22}
+                  alt="Salesix Logo"
+                  width={140}
+                  height={35}
+                  className="h-7 w-auto object-contain"
                   priority
                 />
               </Link>

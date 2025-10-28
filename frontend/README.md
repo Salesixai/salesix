@@ -1,3 +1,15 @@
+1. Start Infrastructure (in project root):
+   docker compose up redis -d
+
+2. Start Frontend (in a new terminal):
+   cd frontend && npm run dev
+
+3. Start Backend (in a new terminal):
+   cd backend && uv run api.py
+
+4. Start Background Worker (in a new terminal):
+   cd backend && uv run dramatiq run_agent_background
+
 # Kortix Frontend
 
 ## Quick Setup

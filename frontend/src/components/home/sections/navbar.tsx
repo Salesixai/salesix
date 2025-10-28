@@ -104,10 +104,10 @@ export function Navbar() {
   const handleOverlayClick = () => setIsDrawerOpen(false);
 
   const logoSrc = !mounted
-    ? '/kortix-logo.svg'
+    ? '/salesix-logo-black.png'
     : resolvedTheme === 'dark'
-      ? '/kortix-logo-white.svg'
-      : '/kortix-logo.svg';
+      ? '/salesix-logo-white.png'
+      : '/salesix-logo-black.png';
 
   return (
     <header
@@ -135,10 +135,10 @@ export function Navbar() {
               <Link href="/" className="flex items-center gap-3">
                 <Image
                   src={logoSrc}
-                  alt="Kortix Logo"
-                  width={80}
-                  height={14}
-                  className="md:w-[100px] md:h-[18px]"
+                  alt="Salesix Logo"
+                  width={120}
+                  height={30}
+                  className="h-6 w-auto object-contain"
                   priority
                 /> 
               </Link>

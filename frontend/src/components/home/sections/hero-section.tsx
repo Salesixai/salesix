@@ -1,7 +1,7 @@
 'use client';
 import { HeroVideoSection } from '@/components/home/sections/hero-video-section';
 import { siteConfig } from '@/lib/home';
-import { ArrowRight, Github, X, AlertCircle, Square } from 'lucide-react';
+import { ArrowRight, Github, X, AlertCircle, Square, Sparkles } from 'lucide-react';
 import { FlickeringGrid } from '@/components/home/ui/flickering-grid';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { useState, useEffect, useRef, FormEvent } from 'react';
@@ -65,17 +65,19 @@ const RotatingText = ({
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % texts.length);
         setIsVisible(true);
-      }, 150); // Half of the transition duration
-    }, 2000); // Change every 2 seconds
+      }, 250); // Transition delay
+    }, 3000); // Change every 3 seconds
 
     return () => clearInterval(interval);
   }, [texts.length]);
 
   return (
-    <span className={`inline-block transition-all duration-300 ${className}`}>
+    <span className={`inline-block ${className}`}>
       <span 
-        className={`inline-block transition-opacity duration-300 ${
-          isVisible ? 'opacity-100' : 'opacity-0'
+        className={`inline-block transition-all duration-500 ease-in-out ${
+          isVisible 
+            ? 'opacity-100 translate-y-0 scale-100' 
+            : 'opacity-0 -translate-y-3 scale-95'
         }`}
       >
         {texts[currentIndex]}
@@ -372,16 +374,29 @@ export function HeroSection() {
               </svg>
             </span>
           </Link> */}
+          {/* Tagline Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 border-secondary/30 bg-secondary/5 backdrop-blur-sm">
+              <Sparkles className="w-5 h-5 text-secondary" />
+              <span className="text-xs md:text-xs lg:text-xs xl:text-xs font-semibold text-secondary tracking-wide">
+                Next-Gen AI Agentic Platform
+              </span>
+            </div>
           <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 pt-8 sm:pt-12 max-w-4xl mx-auto">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tighter text-balance text-center px-2">
-              <span className="text-primary">Hire Kortix for </span>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-balance text-center px-2">
+              <span className="text-primary block mb-1">Hire Salesix for </span>
+              {/* <RotatingText 
+                texts={['Sales Automation', 'Marketing Automation', 'Research Automation', 'Data Analysis Automation','Lead Generation', 'Analytics', 'AI Voice Agents','Email Automation','SMS Automation']}
+                className="text-secondary"
+              /> */}
+            </h1>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tighter text-balance text-center mb-2">
               <RotatingText 
-                texts={['Research', 'Presentations', 'Docs', 'Spreadsheets', 'Design', 'Data Analysis', 'Email Management', 'Social Media', 'SEO', 'Lead Generation', 'Customer Support', 'Content Creation', 'Project Management', 'Sales', 'Marketing', 'Analytics']}
+                texts={['Sales Automation', 'Marketing Automation', 'Research Automation', 'Data Analysis Automation','Lead Generation', 'Analytics', 'AI Voice Agents','Email Automation','SMS Automation']}
                 className="text-secondary"
               />
             </h1>
-            <p className="text-base md:text-lg text-center text-muted-foreground font-medium text-balance leading-relaxed tracking-tight max-w-2xl px-2">
-            Deploy AI Workers that run your business autonomously.
+            <p className="text-base md:text-lg text-center text-muted-foreground font-medium leading-relaxed tracking-tight max-w-2xl px-2">
+              Transform operations with intelligent agents that work 24/7, learn continuously, and scale infinitely.
             </p>
           </div>
 
@@ -391,7 +406,7 @@ export function HeroSection() {
                 <ChatInput
                   ref={chatInputRef}
                   onSubmit={handleChatInputSubmit}
-                  placeholder="Give Kortix a task to complete..."
+                  placeholder="Give Salesix a task to complete..."
                   loading={isSubmitting}
                   disabled={isSubmitting}
                   value={inputValue}

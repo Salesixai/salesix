@@ -29,29 +29,16 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: siteConfig.name,
+    default: siteConfig.title,
     template: `%s - ${siteConfig.name}`,
   },
-  description:
-    'Kortix is a fully open source AI assistant that helps you accomplish real-world tasks with ease. Through natural conversation, Kortix becomes your digital companion for research, data analysis, and everyday challenges.',
-  keywords: [
-    'AI',
-    'artificial intelligence',
-    'browser automation',
-    'web scraping',
-    'file management',
-    'AI assistant',
-    'open source',
-    'research',
-    'data analysis',
-  ],
-  authors: [{ name: 'Kortix Team', url: 'https://suna.so' }],
-  creator:
-    'Kortix Team',
-  publisher:
-    'Kortix Team',
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  authors: [{ name: siteConfig.author, url: siteConfig.url }],
+  creator: siteConfig.creator,
+  publisher: siteConfig.publisher,
   category: 'Technology',
-  applicationName: 'Suna',
+  applicationName: siteConfig.name,
   formatDetection: {
     telephone: false,
     email: false,
@@ -66,17 +53,16 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Suna - Open Source Generalist AI Worker',
-    description:
-      'Suna is a fully open source AI assistant that helps you accomplish real-world tasks with ease through natural conversation.',
+    title: siteConfig.title,
+    description: siteConfig.description,
     url: siteConfig.url,
-    siteName: 'Suna',
+    siteName: siteConfig.name,
     images: [
       {
-        url: '/banner.png',
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: 'Suna - Open Source Generalist AI Worker',
+        alt: siteConfig.title,
         type: 'image/png',
       },
     ],
@@ -85,27 +71,33 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Suna - Open Source Generalist AI Worker',
-    description:
-      'Suna is a fully open source AI assistant that helps you accomplish real-world tasks with ease through natural conversation.',
-    creator: '@kortixai',
-    site: '@kortixai',
+    title: siteConfig.title,
+    description: siteConfig.description,
+    creator: siteConfig.twitterHandle,
+    site: siteConfig.twitterHandle,
     images: [
       {
-        url: '/banner.png',
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: 'Suna - Open Source Generalist AI Worker',
+        alt: siteConfig.title,
       },
     ],
   },
   icons: {
-    icon: [{ url: '/favicon.png', sizes: 'any' }],
-    shortcut: '/favicon.png',
+    icon: [
+      { url: '/favicon.png?v=2', type: 'image/png' },
+      { url: '/favicon.ico', sizes: '32x32' },
+    ],
+    shortcut: [{ url: '/favicon.png?v=2' }],
+    apple: [{ url: '/icon.png?v=2', type: 'image/png', sizes: '180x180' }],
   },
   // manifest: "/manifest.json",
   alternates: {
     canonical: siteConfig.url,
+  },
+  other: {
+    'sitemap': `${siteConfig.url}sitemap.xml`,
   },
 };
 
