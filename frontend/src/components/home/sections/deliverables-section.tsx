@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo, memo } from 'react';
 import { motion, AnimatePresence, useScroll, useInView } from 'framer-motion';
 
 interface DeliverableType {
@@ -11,68 +11,24 @@ interface DeliverableType {
 
 const deliverables: DeliverableType[] = [
   {
-    type: 'Presentations',
-    description: 'Create comprehensive, professional presentations with detailed research, compelling visuals, and strategic insights. From pitch decks to quarterly reports, our AI delivers presentation-ready content that impresses stakeholders and drives decisions.',
+    type: 'Sales Development',
+    description: 'Your AI-powered sales assistant that identifies prospects, qualifies leads, and follows up automatically. It analyzes buyer intent, nurtures opportunities, and ensures no lead slips through the cracks—accelerating your sales pipeline without manual effort.',
     preview: (
-      <div className="w-full h-full bg-gradient-to-br from-red-50 to-pink-50 dark:from-red-950/20 dark:to-pink-950/20 rounded-2xl p-6 border border-red-200/50 dark:border-red-800/50 shadow-2xl">
-        <div className="grid grid-cols-2 gap-6 h-full">
-          {/* Left Column */}
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-sm mb-2 text-foreground">Phase 5: Pipeline Management</h3>
-              <ul className="space-y-1 text-xs text-muted-foreground">
-                <li>• Update candidate status in real-time</li>
-                <li>• Manage follow-up sequences</li>
-                <li>• Track progression through hiring stages</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold text-sm mb-2 text-foreground">Phase 6: Analytics & Reporting</h3>
-              <ul className="space-y-1 text-xs text-muted-foreground">
-                <li>• Generate comprehensive weekly reports</li>
-                <li>• Create data visualizations and charts</li>
-                <li>• Provide strategic recommendations</li>
-              </ul>
-            </div>
-            <div className="bg-card/50 rounded-lg p-3 border border-border/50">
-              <h4 className="font-semibold text-xs mb-1 text-foreground">Automation Schedule</h4>
-              <p className="text-xs text-muted-foreground">Every Monday at 9:00 AM, your agent will automatically process new job positions.</p>
-            </div>
-          </div>
-          
-          {/* Right Column */}
-          <div className="space-y-4">
-            <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">
-              <h3 className="font-semibold text-sm mb-2 text-primary">Seed VC Associate Recruitment Campaign - COMPLETE</h3>
-              <p className="text-xs text-muted-foreground mb-3">I've successfully completed a comprehensive recruitment campaign for the Seed VC Associate position at Founders Future.</p>
-              
-              <div className="space-y-2">
-                <h4 className="font-medium text-xs text-foreground">📊 FINAL DELIVERABLES:</h4>
-                <ul className="text-xs text-muted-foreground space-y-1">
-                  <li><strong>1. Candidate Pipeline:</strong> 15 high-quality candidates identified and scored</li>
-                  <li className="ml-4">• Top Tier (9-10/10): 3 exceptional candidates</li>
-                  <li className="ml-4">• Strong Tier (7-8/10): 7 very good candidates</li>
-                  <li className="ml-4">• Good Tier (5-6/10): 5 solid candidates</li>
-                  <li><strong>2. Comprehensive Google Sheet:</strong> Live Candidate Database</li>
-                  <li><strong>3. Strategic Insights & Recommendations</strong></li>
-                </ul>
-              </div>
-            </div>
-            
-            <div className="bg-secondary/5 rounded-lg p-3 border border-secondary/20">
-              <h4 className="font-medium text-xs mb-2 text-secondary">🎯 TOP 3 CANDIDATES TO PRIORITIZE</h4>
-              <p className="text-xs text-muted-foreground">Market Analysis, Compensation Insights, Sourcing Strategy recommendations included.</p>
-            </div>
-          </div>
-        </div>
+      <div className="w-full h-full flex items-center justify-center p-4 lg:p-6" style={{ transform: 'translateZ(0)', willChange: 'opacity' }}>
+        <img 
+          src="/images/deliverable-section/sales-development-agent.svg" 
+          alt="Sales Development Agent"
+          className="w-full h-full object-contain"
+          loading="eager"
+        />
       </div>
     ),
   },
   {
-    type: 'Spreadsheets',
-    description: 'Transform raw data into actionable insights with advanced spreadsheet analysis, automated calculations, and dynamic reporting. Our AI creates sophisticated data models that track performance, identify trends, and support strategic decision-making.',
+    type: 'Marketing Expert',
+    description: 'Automate your marketing with intelligence. This agent creates, tests, and optimizes campaigns across email, SMS, and social media—learning what works and improving with every engagement to deliver consistent ROI.',
     preview: (
-      <div className="w-full h-full bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 rounded-2xl p-6 border border-green-200/50 dark:border-green-800/50 shadow-2xl">
+      <div className="w-full h-full bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 rounded-2xl p-4 lg:p-6 border border-green-200/50 dark:border-green-800/50 shadow-xl" style={{ transform: 'translateZ(0)', willChange: 'opacity' }}>
         <div className="h-full">
           <div className="grid grid-cols-6 gap-1 h-full">
             <div className="space-y-1">
@@ -134,10 +90,10 @@ const deliverables: DeliverableType[] = [
     ),
   },
   {
-    type: 'Design',
-    description: 'Generate stunning visual designs, wireframes, and mockups that capture your brand vision. From user interface designs to marketing materials, our AI creates cohesive visual assets that engage audiences and communicate effectively.',
+    type: 'Customer Support',
+    description: 'Offer instant, human-like support across every channel. The AI voice agent resolves queries, manages escalations, and delivers personalized assistance—reducing response times and boosting customer satisfaction.',
     preview: (
-      <div className="w-full h-full bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-950/20 dark:to-violet-950/20 rounded-2xl p-6 border border-purple-200/50 dark:border-purple-800/50 shadow-2xl flex items-center justify-center">
+      <div className="w-full h-full bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-950/20 dark:to-violet-950/20 rounded-2xl p-4 lg:p-6 border border-purple-200/50 dark:border-purple-800/50 shadow-xl flex items-center justify-center" style={{ transform: 'translateZ(0)', willChange: 'opacity' }}>
         <div className="relative w-full max-w-sm h-80 bg-card rounded-xl shadow-lg border border-border p-4">
           <div className="absolute top-4 left-4 w-16 h-4 bg-purple-200 dark:bg-purple-800 rounded"></div>
           <div className="absolute top-10 left-4 w-24 h-2 bg-purple-100 dark:bg-purple-900 rounded"></div>
@@ -163,10 +119,10 @@ const deliverables: DeliverableType[] = [
     ),
   },
   {
-    type: 'Documentation',
-    description: 'Produce detailed, well-structured documentation that makes complex information accessible. From technical manuals to user guides, our AI creates clear, comprehensive documentation that improves understanding and reduces support overhead.',
+    type: 'Data Enrichment',
+    description: 'Empower your CRM and sales systems with complete, accurate, and intelligent data. The Data Enrichment Agent automatically gathers, validates, and updates company and contact information—giving your teams the insights they need to engage smarter, close faster, and make every interaction count.',
     preview: (
-      <div className="w-full h-full bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 rounded-2xl p-6 border border-blue-200/50 dark:border-blue-800/50 shadow-2xl">
+      <div className="w-full h-full bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 rounded-2xl p-4 border border-blue-200/50 dark:border-blue-800/50 shadow-xl" style={{ transform: 'translateZ(0)', willChange: 'opacity' }}>
         <div className="space-y-4 h-full">
           <div className="h-6 bg-blue-200 dark:bg-blue-800 rounded w-2/3"></div>
           
@@ -207,10 +163,10 @@ const deliverables: DeliverableType[] = [
     ),
   },
   {
-    type: 'Data Visualizations',
-    description: 'Build interactive dashboards and compelling data visualizations that tell your data story. Our AI transforms complex datasets into clear, actionable charts and graphs that reveal patterns, highlight opportunities, and support data-driven decisions.',
+    type: 'Lead Generation',
+    description: 'Fuel your growth pipeline. The Lead Generation Agent discovers, validates, and prioritizes prospects using AI-driven data intelligence—so your team focuses only on high-value opportunities.',
     preview: (
-      <div className="w-full h-full bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/20 dark:to-amber-950/20 rounded-2xl p-6 border border-orange-200/50 dark:border-orange-800/50 shadow-2xl">
+      <div className="w-full h-full bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/20 dark:to-amber-950/20 rounded-2xl p-4 lg:p-6 border border-orange-200/50 dark:border-orange-800/50 shadow-xl" style={{ transform: 'translateZ(0)', willChange: 'opacity' }}>
         <div className="h-full flex flex-col">
           <div className="mb-4">
             <div className="h-4 bg-orange-200 dark:bg-orange-800 rounded w-1/2 mb-2"></div>
@@ -258,27 +214,49 @@ const deliverables: DeliverableType[] = [
 export function DeliverablesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { margin: "-50%" });
+  const lastIndexRef = useRef(0);
+  const rafRef = useRef<number | null>(null);
+  const isInView = useInView(containerRef, { margin: "-50%", once: false });
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start']
   });
 
-  // Calculate which deliverable should be active based on scroll progress
+  // Throttled scroll handler with RAF for better performance
   useEffect(() => {
+    let isUpdating = false;
+    
     const unsubscribe = scrollYProgress.on('change', (latest) => {
-      if (latest > 0.1 && latest < 0.9) {
-        const adjustedProgress = (latest - 0.1) / 0.8; // Normalize to 0-1 range
-        const index = Math.min(
-          Math.floor(adjustedProgress * deliverables.length),
-          deliverables.length - 1
-        );
-        setActiveIndex(index);
-      }
+      if (isUpdating) return; // Skip if already processing
+      
+      isUpdating = true;
+      
+      // Use RAF for smooth updates
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      
+      rafRef.current = requestAnimationFrame(() => {
+        if (latest > 0.1 && latest < 0.9) {
+          const adjustedProgress = (latest - 0.1) / 0.8;
+          const index = Math.min(
+            Math.floor(adjustedProgress * deliverables.length),
+            deliverables.length - 1
+          );
+          
+          // Only update if index changed
+          if (index !== lastIndexRef.current) {
+            lastIndexRef.current = index;
+            setActiveIndex(index);
+          }
+        }
+        isUpdating = false;
+      });
     });
 
-    return unsubscribe;
+    return () => {
+      unsubscribe();
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, [scrollYProgress]);
 
   return (
@@ -292,52 +270,49 @@ export function DeliverablesSection() {
           {/* Section Header */}
           <div className="flex flex-col items-center justify-center gap-6 py-20 px-6">
             <h2 className="text-3xl md:text-4xl font-medium tracking-tighter text-center text-balance">
-              24/7 AI Workers for Every Task
+              Build Specialized AI Agents for Every Workflow
             </h2>
             <p className="text-muted-foreground text-center text-balance font-medium max-w-3xl text-lg">
-              From presentations to data analysis, our AI workers handle complex deliverables while you focus on what matters most. Each worker is specialized, intelligent, and works around the clock to deliver professional results.
+            From automating daily tasks to executing high-impact business operations, Salesix lets you create autonomous AI agents that adapt to your objectives and deliver measurable outcomes.
             </p>
           </div>
 
           {/* Sticky Content Area - Locks during scroll */}
-          <div className="sticky top-0 h-screen flex items-center justify-center w-full bg-background border-t border-border">
+          <div className="sticky top-0 h-screen flex items-center justify-center w-full bg-background border-t border-border" style={{ willChange: 'transform' }}>
             <div className="relative w-full">
-              <div className="max-w-6xl mx-auto px-6">
+              <div className="max-w-6xl mx-auto px-12">
                 {/* Content Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-8 items-center" style={{ transform: 'translateZ(0)' }}>
                   {/* Left Side - Text */}
                   <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -50 }}
-                    transition={{ duration: 0.8 }}
-                    className="flex flex-col items-start justify-center gap-2"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: isInView ? 1 : 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="flex flex-col items-start justify-center gap-2 pr-0"
                   >
                     <motion.h3
                       className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tighter text-balance mb-6"
                       key={`title-${activeIndex}`}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      <span className="text-foreground">AI Worker for </span>
+                      <span className="text-foreground">AI Agents for </span>
                       <span className="text-primary">{deliverables[activeIndex].type}</span>
                     </motion.h3>
                     
                     <motion.p
                       className="text-muted-foreground text-balance font-medium mb-8 text-lg leading-relaxed"
                       key={`desc-${activeIndex}`}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.1 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
                     >
                       {deliverables[activeIndex].description}
                     </motion.p>
 
-                    <motion.button
+                    <button
                       className="group inline-flex h-12 items-center justify-center gap-2 text-base font-medium tracking-wide rounded-full text-primary-foreground dark:text-black px-8 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] bg-primary dark:bg-white hover:bg-primary/90 dark:hover:bg-white/90 transition-all duration-200 w-fit mb-8"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.2 }}
                     >
                       <span>Get Started</span>
                       <span className="inline-flex items-center justify-center size-6 rounded-full bg-white/20 dark:bg-black/10 group-hover:bg-white/30 dark:group-hover:bg-black/20 transition-colors duration-200">
@@ -358,7 +333,7 @@ export function DeliverablesSection() {
                           />
                         </svg>
                         </span>
-                    </motion.button>
+                    </button>
 
                     {/* Progress Indicator */}
                     <div className="flex space-x-3">
@@ -378,22 +353,24 @@ export function DeliverablesSection() {
 
                   {/* Right Side - Preview */}
                   <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 50 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: isInView ? 1 : 0 }}
+                    transition={{ duration: 0.4 }}
                     className="flex flex-col items-center justify-center h-[600px]"
+                    style={{ transform: 'translateZ(0)', willChange: 'opacity' }}
                   >
-                    <AnimatePresence mode="wait">
+                    <AnimatePresence mode="wait" initial={false}>
                       <motion.div
                         key={activeIndex}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                         transition={{ 
-                          duration: 0.5,
-                          ease: [0.4, 0, 0.2, 1]
+                          duration: 0.3,
+                          ease: 'easeInOut'
                         }}
                         className="w-full h-full"
+                        style={{ transform: 'translateZ(0)' }}
                       >
                         {deliverables[activeIndex].preview}
                       </motion.div>
@@ -405,12 +382,12 @@ export function DeliverablesSection() {
           </div>
 
           {/* Spacer sections for scroll trigger - each deliverable gets its own scroll space */}
-          <div className="relative">
-            {deliverables.map((deliverable, index) => (
+          <div className="relative" style={{ transform: 'translateZ(0)' }}>
+            {deliverables.map((_, index) => (
               <div
                 key={index}
                 className="h-screen opacity-0 pointer-events-none"
-                data-deliverable={deliverable.type}
+                style={{ contentVisibility: 'auto' }}
               />
             ))}
           </div>

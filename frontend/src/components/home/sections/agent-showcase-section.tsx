@@ -1,83 +1,41 @@
 'use client';
 
 import { SectionHeader } from '@/components/home/section-header';
-import { motion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
-import { UnifiedAgentCard, type BaseAgentData } from '@/components/ui/unified-agent-card';
+import { 
+  Monitor, 
+  Landmark, 
+  ShoppingCart, 
+  Shield, 
+  HeartPulse, 
+  GraduationCap, 
+  Phone, 
+  Building2 
+} from 'lucide-react';
 
 // Simple Agent Card Component
 const AgentCard = ({ agent }: { agent: any }) => {
-  // Convert to BaseAgentData
-  const convertToBaseAgentData = (agent: any): BaseAgentData => ({
-    id: agent.name.toLowerCase().replace(/\s+/g, '-'),
-    name: agent.name,
-    description: agent.desc,
-    role: agent.role,
-    icon: agent.icon,
-    created_at: new Date().toISOString(),
-  });
-
+  const IconComponent = agent.icon;
+  
   return (
-    <UnifiedAgentCard
-      variant="showcase"
-      data={convertToBaseAgentData(agent)}
-      actions={{
-        onClick: () => console.log(`Try ${agent.name}`)
-      }}
-    />
-  );
-};
-
-// Custom Agent Card Component
-const CustomAgentCard = () => {
-  return (
-    <motion.div
-      className="flex flex-col items-start justify-end min-h-[400px] relative group cursor-pointer hover:bg-primary/5 transition-colors duration-300"
-    >
-      <div className="relative flex size-full items-center justify-center h-full overflow-hidden">
-        <div className="pointer-events-none absolute bottom-0 left-0 h-20 w-full bg-gradient-to-t from-background to-transparent z-20"></div>
-        
-        <div className="w-full h-full flex flex-col items-center justify-center gap-6 p-8 text-center">
-          <motion.div 
-            className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300"
-            whileHover={{ rotate: [0, -10, 10, 0] }}
-            transition={{ duration: 0.5 }}
-          >
-            ⚡
-          </motion.div>
-          
-          <div className="space-y-3">
-            <h3 className="text-xl font-semibold tracking-tighter group-hover:text-primary transition-colors">
-              Build Your Own
-            </h3>
-            <p className="text-sm text-primary/70 font-medium uppercase tracking-wider">
-              Custom Agent
-            </p>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Create a specialized AI Worker tailored to your unique business needs and workflow.
-            </p>
-          </div>
-
-          <motion.button
-            className="opacity-0 group-hover:opacity-100 inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-all duration-300"
-            initial={{ y: 10 }}
-            whileHover={{ y: 0 }}
-          >
-            Start Building 
-            <ArrowRight className="w-4 h-4" />
-          </motion.button>
-        </div>
+    <div className="flex flex-col items-center justify-between p-6 border-r border-b border-border min-h-[280px] group transition-colors duration-300 hover:bg-accent/5">
+      {/* Icon */}
+      <div className="mb-4 text-secondary">
+        <IconComponent className="w-12 h-12" />
       </div>
       
-      <div className="flex-1 flex-col gap-2 p-6">
-        <h4 className="text-lg tracking-tighter font-semibold">
-          Custom Agent • Your Choice
-        </h4>
-        <p className="text-muted-foreground text-sm">
-          Design your own AI specialist for any task or industry
+      {/* Content */}
+      <div className="space-y-3 flex-1 text-center">
+        {/* Name */}
+        <h3 className="text-xl font-semibold tracking-tight">
+          {agent.name}
+        </h3>
+        
+        {/* Description */}
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          {agent.desc}
         </p>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -85,53 +43,44 @@ const CustomAgentCard = () => {
 const AgentGrid = () => {
   const agents = [
     { 
-      name: 'Maya', 
-      role: 'Copywriter', 
-      icon: '✍️', 
-      desc: 'Creates compelling copy for ads, blogs, and marketing campaigns that convert readers into customers.',
-      shortDesc: 'AI copywriter for marketing content and campaigns'
+      name: 'IT Industry', 
+      icon: Monitor, 
+      desc: 'Empower IT operations with AI agents that automate monitoring, support, and communication—enhancing productivity and minimizing manual intervention.',
     },
     { 
-      name: 'Hunter', 
-      role: 'Recruiter', 
-      icon: '🎯', 
-      desc: 'Turns hiring challenges into opportunities with magnetic job posts and smooth onboarding.',
-      shortDesc: 'AI recruiter for job posting and candidate screening'
+      name: 'Banking', 
+      icon: Landmark, 
+      desc: 'Revolutionize customer interactions and compliance processes with secure AI agents that handle inquiries, verifications, and personalized financial support.',
     },
     { 
-      name: 'Nova', 
-      role: 'SEO Specialist', 
-      icon: '📈', 
-      desc: 'Boosts website rankings with proven SEO strategies and optimized content.',
-      shortDesc: 'AI SEO expert for website optimization and rankings'
+      name: 'E-Commerce', 
+      icon: ShoppingCart, 
+      desc: 'Drive conversions and retention with AI agents that manage customer queries, track orders, and deliver a seamless shopping experience at every touchpoint.',
     },
     { 
-      name: 'Pixel', 
-      role: 'Social Media Manager', 
-      icon: '📱', 
-      desc: 'Generates content, plans strategies, and manages social media presence effectively.',
-      shortDesc: 'AI social media manager for content and engagement'
+      name: 'Insurance', 
+      icon: Shield, 
+      desc: 'Simplify claims, policy renewals, and customer engagement with AI agents that provide instant responses and automate routine processes with accuracy.',
     },
     { 
-      name: 'Sage', 
-      role: 'Data Analyst', 
-      icon: '📊', 
-      desc: 'Transforms raw data into actionable insights with comprehensive analysis and reporting.',
-      shortDesc: 'AI data analyst for insights and reporting'
+      name: 'Healthcare', 
+      icon: HeartPulse, 
+      desc: 'Enable smarter patient interactions and appointment management with AI agents that streamline communication while maintaining data security and compliance.',
     },
     { 
-      name: 'Echo', 
-      role: 'Project Manager', 
-      icon: '📋', 
-      desc: 'Streamlines workflows, coordinates tasks, and ensures timely project delivery.',
-      shortDesc: 'AI project manager for workflow coordination'
+      name: 'Education', 
+      icon: GraduationCap, 
+      desc: 'Automate student onboarding, scheduling, and engagement with AI agents that support educators, manage queries, and enhance learning experiences.',
     },
     { 
-      name: 'Byte', 
-      role: 'Code Assistant', 
-      icon: '💻', 
-      desc: 'Provides expert programming support with code review, debugging, and architecture design.',
-      shortDesc: 'AI coding assistant for development and debugging'
+      name: 'Call Center', 
+      icon: Phone, 
+      desc: 'Transform your contact center with AI voice agents that handle inbound and outbound calls autonomously—improving efficiency, accuracy, and scalability.',
+    },
+    { 
+      name: 'B2B Services', 
+      icon: Building2, 
+      desc: 'Accelerate deal cycles and client relationships with AI agents that qualify leads, follow up intelligently, and keep business pipelines running 24/7.',
     },
   ];
 
@@ -140,7 +89,6 @@ const AgentGrid = () => {
       {agents.map((agent) => (
         <AgentCard key={agent.name} agent={agent} />
       ))}
-      <CustomAgentCard />
     </div>
   );
 };

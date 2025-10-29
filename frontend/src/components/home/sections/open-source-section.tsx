@@ -316,7 +316,7 @@ export function OpenSourceSection() {
         },
         {
           title: 'Multi-Country Presence',
-          description: 'Salesix agents are available in multiple countries, ensuring global reach and seamless communication.',
+          description: 'Salesix empowers your business to scale worldwide with AI agents that function across countries effortlessly.',
         },
       ],
     },

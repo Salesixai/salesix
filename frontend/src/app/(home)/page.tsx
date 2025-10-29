@@ -1,25 +1,50 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { CTASection } from '@/components/home/sections/cta-section';
-// import { FAQSection } from "@/components/sections/faq-section";
-import { FooterSection } from '@/components/home/sections/footer-section';
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 import { HeroSection } from '@/components/home/sections/hero-section';
-import { OpenSourceSection } from '@/components/home/sections/open-source-section';
-import { PricingSection } from '@/components/home/sections/pricing-section';
-import { UseCasesSection } from '@/components/home/sections/use-cases-section';
 import { ModalProviders } from '@/providers/modal-providers';
-import { HeroVideoSection } from '@/components/home/sections/hero-video-section';
 import { BackgroundAALChecker } from '@/components/auth/background-aal-checker';
-import { BentoSection } from '@/components/home/sections/bento-section';
 import { CompanyShowcase } from '@/components/home/sections/company-showcase';
-import { FeatureSection } from '@/components/home/sections/feature-section';
-import { QuoteSection } from '@/components/home/sections/quote-section';
-import { TestimonialSection } from '@/components/home/sections/testimonial-section';
-import { FAQSection } from '@/components/home/sections/faq-section';
-import { AgentShowcaseSection } from '@/components/home/sections/agent-showcase-section';
-import { DeliverablesSection } from '@/components/home/sections/deliverables-section';
 import { CapabilitiesSection } from '@/components/home/sections/capabilities-section';
+
+// Loading placeholder component
+const SectionLoader = ({ height = 'h-96' }: { height?: string }) => (
+  <div className={`${height} w-full animate-pulse bg-muted/20`} />
+);
+
+// Lazy load below-the-fold sections for better initial load performance
+const FeatureSection = dynamic(() => import('@/components/home/sections/feature-section').then(mod => ({ default: mod.FeatureSection })), {
+  ssr: false,
+});
+
+const BentoSection = dynamic(() => import('@/components/home/sections/bento-section').then(mod => ({ default: mod.BentoSection })), {
+  ssr: false,
+});
+
+const DeliverablesSection = dynamic(() => import('@/components/home/sections/deliverables-section').then(mod => ({ default: mod.DeliverablesSection })), {
+  ssr: false,
+});
+
+const AgentShowcaseSection = dynamic(() => import('@/components/home/sections/agent-showcase-section').then(mod => ({ default: mod.AgentShowcaseSection })), {
+  ssr: false,
+});
+
+const OpenSourceSection = dynamic(() => import('@/components/home/sections/open-source-section').then(mod => ({ default: mod.OpenSourceSection })), {
+  ssr: false,
+});
+
+const PricingSection = dynamic(() => import('@/components/home/sections/pricing-section').then(mod => ({ default: mod.PricingSection })), {
+  ssr: false,
+});
+
+const CTASection = dynamic(() => import('@/components/home/sections/cta-section').then(mod => ({ default: mod.CTASection })), {
+  ssr: false,
+});
+
+const FooterSection = dynamic(() => import('@/components/home/sections/footer-section').then(mod => ({ default: mod.FooterSection })), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
@@ -28,18 +53,43 @@ export default function Home() {
       <BackgroundAALChecker>
         <main className="flex flex-col items-center justify-center min-h-screen w-full">
           <div className="w-full divide-y divide-border">
+            {/* Above the fold - Load immediately */}
             <HeroSection />
+            {/* <CompanyShowcase /> */}
             <CapabilitiesSection />
-            {/* <DeliverablesSection />             */}
-            <BentoSection />
             
-            {/* <AgentShowcaseSection /> */}
-            <OpenSourceSection />
-            <PricingSection />
-            {/* <TestimonialSection /> */}
-            {/* <FAQSection /> */}
-            <CTASection />
-            <FooterSection />
+            {/* Below the fold - Lazy loaded with Suspense */}
+            <Suspense fallback={<SectionLoader />}>
+              <FeatureSection />
+            </Suspense>
+            
+            <Suspense fallback={<SectionLoader />}>
+              <BentoSection />
+            </Suspense>
+            
+            <Suspense fallback={<SectionLoader />}>
+              <DeliverablesSection />
+            </Suspense>
+            
+            <Suspense fallback={<SectionLoader />}>
+              <AgentShowcaseSection />
+            </Suspense>
+            
+            <Suspense fallback={<SectionLoader />}>
+              <OpenSourceSection />
+            </Suspense>
+            
+            <Suspense fallback={<SectionLoader />}>
+              <PricingSection />
+            </Suspense>
+            
+            <Suspense fallback={<SectionLoader height="h-64" />}>
+              <CTASection />
+            </Suspense>
+            
+            <Suspense fallback={<SectionLoader />}>
+              <FooterSection />
+            </Suspense>
           </div>
         </main>
       </BackgroundAALChecker>

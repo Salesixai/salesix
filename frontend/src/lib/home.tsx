@@ -499,23 +499,23 @@ export const siteConfig = {
     ],
   },
   featureSection: {
-    title: 'How Kortix Suna Works',
+    title: 'Smarter Process. Seamless Results',
     description:
-      'Discover how Kortix Suna transforms your commands into action in four easy steps',
+      'Discover how Salesix transforms your commands into action in four easy steps',
     items: [
       {
         id: 1,
-        title: 'Request an Action',
+        title: 'Define Your Goal',
         content:
-          'Speak or type your command—let Kortix Suna capture your intent. Your request instantly sets the process in motion.',
+          'Start by telling Salesix what you want to achieve—whether it’s scheduling calls, qualifying leads, or automating customer follow-ups.',
         image:
           'https://images.unsplash.com/photo-1720371300677-ba4838fa0678?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       },
       {
         id: 2,
-        title: 'AI Understanding & Planning',
+        title: 'AI Analysis & Strategy Planning',
         content:
-          'Suna analyzes your request, understands the context, and develops a structured plan to complete the task efficiently.',
+          'SSalesix intelligently interprets your intent, analyzes data, and creates the most effective plan to accomplish the task with precision.',
         image:
           'https://images.unsplash.com/photo-1686170287433-c95faf6d3608?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8fA%3D%3D',
       },
@@ -523,7 +523,7 @@ export const siteConfig = {
         id: 3,
         title: 'Autonomous Execution',
         content:
-          'Using its capabilities and integrations, Suna executes the task independently, handling any complexities along the way.',
+          'Your AI agents take charge—handling conversations, executing workflows, and coordinating across systems without human intervention.',
         image:
           'https://images.unsplash.com/photo-1720378042271-60aff1e1c538?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D',
       },
@@ -531,7 +531,7 @@ export const siteConfig = {
         id: 4,
         title: 'Results & Learning',
         content:
-          'Suna delivers results and learns from each interaction, continuously improving its performance to better serve your needs.',
+          'Review clear performance results while Salesix continuously learns from every interaction, becoming smarter and more efficient over time.',
         image:
           'https://images.unsplash.com/photo-1666882990322-e7f3b8df4f75?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D',
       },

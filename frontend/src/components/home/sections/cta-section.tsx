@@ -9,7 +9,7 @@ export function CTASection() {
     {
       icon: <Rocket className="size-6" />,
       title: 'Launch in Minutes',
-      description: 'Deploy your first AI agent instantly',
+      description: 'Create your AI agent instantly',
     },
     {
       icon: <TrendingUp className="size-6" />,
@@ -18,8 +18,8 @@ export function CTASection() {
     },
     {
       icon: <Sparkles className="size-6" />,
-      title: 'Zero Learning Curve',
-      description: 'AI handles the complexity for you',
+      title: 'Always Learning',
+      description: 'AI agents learn from every interaction.',
     },
   ];
 
