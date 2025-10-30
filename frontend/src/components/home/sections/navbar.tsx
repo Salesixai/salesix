@@ -15,9 +15,6 @@ import { useGitHubStars } from '@/hooks/use-github-stars';
 import { useRouter, usePathname } from 'next/navigation';
 import { getActiveMenuSection, SCROLL_OFFSET } from '@/lib/navigation-config';
 
-const INITIAL_WIDTH = '70rem';
-const MAX_WIDTH = '1000px';
-
 const overlayVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
@@ -119,25 +116,20 @@ export function Navbar() {
     <header
       className={cn(
         'sticky z-50 flex justify-center transition-all duration-300',
-        hasScrolled ? 'top-6 mx-4 md:mx-0' : 'top-4 mx-2 md:mx-0',
+        hasScrolled ? 'top-6 mx-4 md:mx-6' : 'top-4 mx-4 md:mx-6',
       )}
     >
-      <motion.div
-        initial={{ width: INITIAL_WIDTH }}
-        animate={{ width: hasScrolled ? MAX_WIDTH : INITIAL_WIDTH }}
-        transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+      <div
+        className={cn(
+          'w-full mx-auto rounded-2xl transition-all duration-300',
+          hasScrolled
+            ? 'max-w-[1000px] border border-border backdrop-blur-lg bg-background/75'
+            : 'max-w-[70rem] shadow-none',
+        )}
       >
-        <div
-          className={cn(
-            'mx-auto max-w-7xl rounded-2xl transition-all duration-300 xl:px-0',
-            hasScrolled
-              ? 'px-2 md:px-2 border border-border backdrop-blur-lg bg-background/75'
-              : 'shadow-none px-3 md:px-7',
-          )}
-        >
-          <div className="flex h-[56px] items-center p-2 md:p-4">
+        <div className="flex h-[56px] items-center justify-between px-3 md:px-6 gap-3 md:gap-4">
             {/* Left Section - Logo */}
-            <div className="flex items-center justify-start flex-shrink-0 w-auto md:w-[200px]">
+            <div className="flex items-center justify-start flex-shrink-0">
               <Link href="/" className="flex items-center gap-3">
                 <Image
                   src={logoSrc}
@@ -151,58 +143,53 @@ export function Navbar() {
             </div>
 
             {/* Center Section - Navigation Menu */}
-            <div className="hidden md:flex items-center justify-center flex-grow">
+            <div className="hidden lg:flex items-center justify-center flex-1">
               <NavMenu />
             </div>
 
             {/* Right Section - Actions */}
-            <div className="flex items-center justify-end flex-shrink-0 w-auto md:w-[200px] ml-auto">
-              <div className="flex flex-row items-center gap-2 md:gap-3 shrink-0">
-                <div className="flex items-center space-x-3">
-                  {/* <Link
-                    href="https://github.com/kortix-ai/suna"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hidden md:flex items-center gap-1.5 h-7 px-2.5 text-xs font-medium rounded-full bg-transparent text-muted-foreground/60 hover:text-muted-foreground hover:bg-accent/30 transition-all duration-200"
-                    aria-label="GitHub Repository"
-                  >
-                    <Github className="size-3.5" />
-                    <span className={`text-xs font-medium transition-opacity duration-200 ${starsLoading ? 'opacity-50' : 'opacity-100'}`}>
-                      {formattedStars}
-                    </span>
-                  </Link> */}
-                  {user ? (
-                    <Link
-                      className="bg-secondary h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
-                      href="/dashboard"
-                    >
-                      Dashboard
-                    </Link>
-                  ) : (
-                    <Link
-                      className="bg-secondary h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
-                      href="/auth"
-                    >
-                      Get Started
-                    </Link>
-                  )}
-                </div>
-                <ThemeToggle />
-                <button
-                  className="md:hidden border border-border size-8 rounded-md cursor-pointer flex items-center justify-center"
-                  onClick={toggleDrawer}
+            <div className="flex items-center justify-end flex-shrink-0 gap-2">
+              {/* <Link
+                href="https://github.com/kortix-ai/suna"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden lg:flex items-center gap-1.5 h-7 px-2.5 text-xs font-medium rounded-full bg-transparent text-muted-foreground/60 hover:text-muted-foreground hover:bg-accent/30 transition-all duration-200"
+                aria-label="GitHub Repository"
+              >
+                <Github className="size-3.5" />
+                <span className={`text-xs font-medium transition-opacity duration-200 ${starsLoading ? 'opacity-50' : 'opacity-100'}`}>
+                  {formattedStars}
+                </span>
+              </Link> */}
+              {user ? (
+                <Link
+                  className="bg-secondary h-8 hidden lg:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
+                  href="/dashboard"
                 >
-                  {isDrawerOpen ? (
-                    <X className="size-5" />
-                  ) : (
-                    <Menu className="size-5" />
-                  )}
-                </button>
-              </div>
+                  Dashboard
+                </Link>
+              ) : (
+                <Link
+                  className="bg-secondary h-8 hidden lg:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
+                  href="/auth"
+                >
+                  Get Started
+                </Link>
+              )}
+              <ThemeToggle />
+              <button
+                className="lg:hidden border border-border size-8 rounded-md cursor-pointer flex items-center justify-center"
+                onClick={toggleDrawer}
+              >
+                {isDrawerOpen ? (
+                  <X className="size-5" />
+                ) : (
+                  <Menu className="size-5" />
+                )}
+              </button>
             </div>
           </div>
-        </div>
-      </motion.div>
+      </div>
 
       {/* Mobile Drawer */}
       <AnimatePresence>
