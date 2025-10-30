@@ -139,7 +139,7 @@ export function DeliverablesSection() {
       <div className="relative w-full px-6">
         <div className="max-w-6xl mx-auto border-l border-r border-border">
           {/* Section Header */}
-          <div className="flex flex-col items-center justify-center gap-6 py-20 px-6">
+          <div className="flex flex-col items-center justify-center gap-6 py-16 md:py-20 lg:py-24 px-6">
             <h2 className="text-3xl md:text-4xl font-medium tracking-tighter text-center text-balance">
               Build Specialized AI Agents for Every Workflow
             </h2>
@@ -149,31 +149,31 @@ export function DeliverablesSection() {
           </div>
 
           {/* Sticky Content Area - Locks during scroll */}
-          <div className="sticky top-0 h-screen flex items-center justify-center w-full bg-background border-t border-border" style={{ willChange: 'transform' }}>
+          <div className="sticky top-20 md:top-24 lg:top-8 min-h-[calc(100vh-5rem)] md:min-h-screen flex items-center justify-center w-full bg-background border-t border-border py-8 md:py-12 lg:py-16" style={{ willChange: 'transform' }}>
             <div className="relative w-full">
-              <div className="max-w-6xl mx-auto px-12">
+              <div className="max-w-6xl mx-auto px-6 md:px-12">
                 {/* Content Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-8 items-center" style={{ transform: 'translateZ(0)' }}>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-center" style={{ transform: 'translateZ(0)' }}>
                   {/* Left Side - Text */}
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: isInView ? 1 : 0 }}
                     transition={{ duration: 0.4 }}
-                    className="flex flex-col items-start justify-center gap-2 pr-0"
+                    className="flex flex-col items-start justify-center gap-2 pr-0 order-2 lg:order-1"
                   >
                     <motion.h3
-                      className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tighter text-balance mb-6"
+                      className="text-2xl md:text-4xl lg:text-5xl font-medium tracking-tighter text-balance mb-3 md:mb-6"
                       key={`title-${activeIndex}`}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <span className="text-foreground">AI Agents for </span>
+                      <span className="text-foreground block md:inline">AI Agents for </span>
                       <span className="text-primary">{deliverables[activeIndex].type}</span>
                     </motion.h3>
                     
                     <motion.p
-                      className="text-muted-foreground text-balance font-medium mb-8 text-lg leading-relaxed"
+                      className="text-muted-foreground text-balance font-medium mb-6 md:mb-8 text-sm md:text-lg leading-relaxed"
                       key={`desc-${activeIndex}`}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -183,17 +183,17 @@ export function DeliverablesSection() {
                     </motion.p>
 
                     <button
-                      className="group inline-flex h-12 items-center justify-center gap-2 text-base font-medium tracking-wide rounded-full text-primary-foreground dark:text-black px-8 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] bg-primary dark:bg-white hover:bg-primary/90 dark:hover:bg-white/90 transition-all duration-200 w-fit mb-8"
+                      className="group inline-flex h-10 md:h-12 items-center justify-center gap-2 text-sm md:text-base font-medium tracking-wide rounded-full text-primary-foreground dark:text-black px-6 md:px-8 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] bg-primary dark:bg-white hover:bg-primary/90 dark:hover:bg-white/90 transition-all duration-200 w-fit mb-6 md:mb-8"
                     >
                       <span>Get Started</span>
-                      <span className="inline-flex items-center justify-center size-6 rounded-full bg-white/20 dark:bg-black/10 group-hover:bg-white/30 dark:group-hover:bg-black/20 transition-colors duration-200">
+                      <span className="inline-flex items-center justify-center size-5 md:size-6 rounded-full bg-white/20 dark:bg-black/10 group-hover:bg-white/30 dark:group-hover:bg-black/20 transition-colors duration-200">
                         <svg
-                          width="14"
-                          height="14"
+                          width="12"
+                          height="12"
                           viewBox="0 0 24 24"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
-                          className="text-primary-foreground dark:text-black"
+                          className="text-primary-foreground dark:text-black md:w-[14px] md:h-[14px]"
                         >
                           <path
                             d="M7 17L17 7M17 7H8M17 7V16"
@@ -207,15 +207,15 @@ export function DeliverablesSection() {
                     </button>
 
                     {/* Progress Indicator */}
-                    <div className="flex space-x-3">
+                    <div className="flex space-x-2 md:space-x-3">
                       {deliverables.map((_, index) => (
                         <button
                           key={index}
                           onClick={() => setActiveIndex(index)}
-                          className={`h-3 rounded-full transition-all duration-500 cursor-pointer hover:bg-primary/70 ${
+                          className={`h-2 md:h-3 rounded-full transition-all duration-500 cursor-pointer hover:bg-primary/70 ${
                             index === activeIndex
-                              ? 'w-10 bg-primary shadow-lg shadow-primary/25'
-                              : 'w-3 bg-muted-foreground/30'
+                              ? 'w-8 md:w-10 bg-primary shadow-lg shadow-primary/25'
+                              : 'w-2 md:w-3 bg-muted-foreground/30'
                           }`}
                         />
                       ))}
@@ -227,7 +227,7 @@ export function DeliverablesSection() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: isInView ? 1 : 0 }}
                     transition={{ duration: 0.4 }}
-                    className="flex flex-col items-center justify-center h-[600px]"
+                    className="flex flex-col items-center justify-center h-[300px] md:h-[500px] lg:h-[600px] order-1 lg:order-2"
                     style={{ transform: 'translateZ(0)', willChange: 'opacity' }}
                   >
                     <AnimatePresence mode="wait" initial={false}>
