@@ -83,7 +83,7 @@ export default function Home() {
               <PricingSection />
             </Suspense>
             
-            <Suspense fallback={<SectionLoader height="h-64" />}>
+            <Suspense fallback={<SectionLoader />}>
               <CTASection />
             </Suspense>
             

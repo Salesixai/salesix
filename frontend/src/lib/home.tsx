@@ -1232,40 +1232,29 @@ export const siteConfig = {
     {
       title: 'Salesix',
       links: [
-        { id: 1, title: 'About', url: 'https://salesix.ai' },
-        { id: 3, title: 'Contact', url: 'mailto:support@salesix.ai' },
-        { id: 4, title: 'Careers', url: 'https://salesix.ai/careers' },
+        { id: 1, title: 'Career', url: '/enterprise' },
+        { id: 2, title: 'Pricing', url: 'https://salesix.ai/#pricing' },
       ],
     },
     {
       title: 'Resources',
       links: [
-        {
-          id: 5,
-          title: 'Documentation',
-          url: 'https://github.com/salesixai',
-        },
-        { id: 7, title: 'Discord', url: 'https://discord.gg/salesix' },
-        { id: 8, title: 'GitHub', url: 'https://github.com/salesixai' },
+        { id: 3, title: 'Privacy Policy', url: 'https://github.com/salesixai' },
+        { id: 4, title: 'Terms of Service', url: 'https://discord.gg/salesix' },
       ],
     },
     {
-      title: 'Legal',
+      title: 'Contact',
       links: [
         {
-          id: 9,
-          title: 'Privacy Policy',
-          url: 'https://suna.so/legal?tab=privacy',
+          id: 5,
+          title: 'Customer Support',
+          url: 'mailto:hello@salesix.ai',
         },
         {
-          id: 10,
-          title: 'Terms of Service',
-          url: 'https://suna.so/legal?tab=terms',
-        },
-        {
-          id: 11,
-          title: 'License Apache 2.0',
-          url: 'https://github.com/salesixai/salesix/blob/main/LICENSE',
+          id: 6,
+          title: 'Become a Partner',
+          url: 'mailto:hello@salesix.ai',
         },
       ],
     },
