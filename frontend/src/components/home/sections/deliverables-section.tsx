@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useMemo, memo } from 'react';
-import { motion, AnimatePresence, useScroll, useInView } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useInView } from 'motion/react';
 
 interface DeliverableType {
   type: string;
@@ -16,8 +16,8 @@ const deliverables: DeliverableType[] = [
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4 lg:p-6" style={{ transform: 'translateZ(0)', willChange: 'opacity' }}>
         <img 
-          src="/images/deliverable-section/sales-development-agent.svg" 
-          alt="Sales Development Agent"
+          src="/images/deliverable-section/sales-development.svg" 
+          alt="Sales Development"
           className="w-full h-full object-contain"
           loading="eager"
         />
@@ -28,64 +28,13 @@ const deliverables: DeliverableType[] = [
     type: 'Marketing Expert',
     description: 'Automate your marketing with intelligence. This agent creates, tests, and optimizes campaigns across email, SMS, and social media—learning what works and improving with every engagement to deliver consistent ROI.',
     preview: (
-      <div className="w-full h-full bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 rounded-2xl p-4 lg:p-6 border border-green-200/50 dark:border-green-800/50 shadow-xl" style={{ transform: 'translateZ(0)', willChange: 'opacity' }}>
-        <div className="h-full">
-          <div className="grid grid-cols-6 gap-1 h-full">
-            <div className="space-y-1">
-              <div className="h-6 bg-green-200 dark:bg-green-800 rounded text-xs flex items-center justify-center font-semibold">Name</div>
-              {Array.from({ length: 12 }).map((_, i) => (
-                <div key={i} className="h-4 bg-green-100 dark:bg-green-900/50 rounded text-xs flex items-center px-1">
-                  Candidate {i + 1}
-                </div>
-              ))}
-            </div>
-            <div className="space-y-1">
-              <div className="h-6 bg-green-200 dark:bg-green-800 rounded text-xs flex items-center justify-center font-semibold">Score</div>
-              {[9.2, 8.8, 8.5, 8.3, 7.9, 7.7, 7.5, 7.2, 6.9, 6.5, 6.2, 6.0].map((score, i) => (
-                <div key={i} className="h-4 bg-green-100 dark:bg-green-900/50 rounded text-xs flex items-center justify-center">
-                  {score}
-                </div>
-              ))}
-            </div>
-            <div className="space-y-1">
-              <div className="h-6 bg-green-200 dark:bg-green-800 rounded text-xs flex items-center justify-center font-semibold">Experience</div>
-              {['5-7y', '4-6y', '6-8y', '3-5y', '4-7y', '5-6y', '3-4y', '2-4y', '4-5y', '3-6y', '2-3y', '1-3y'].map((exp, i) => (
-                <div key={i} className="h-4 bg-green-100 dark:bg-green-900/50 rounded text-xs flex items-center justify-center">
-                  {exp}
-                </div>
-              ))}
-            </div>
-            <div className="space-y-1">
-              <div className="h-6 bg-green-200 dark:bg-green-800 rounded text-xs flex items-center justify-center font-semibold">Location</div>
-              {['SF', 'NYC', 'LA', 'SF', 'NYC', 'Austin', 'SF', 'Seattle', 'NYC', 'Boston', 'SF', 'LA'].map((loc, i) => (
-                <div key={i} className="h-4 bg-green-100 dark:bg-green-900/50 rounded text-xs flex items-center justify-center">
-                  {loc}
-                </div>
-              ))}
-            </div>
-            <div className="space-y-1">
-              <div className="h-6 bg-green-200 dark:bg-green-800 rounded text-xs flex items-center justify-center font-semibold">Status</div>
-              {['Contacted', 'Interview', 'Pending', 'Contacted', 'New', 'Interview', 'Contacted', 'New', 'Pending', 'New', 'Contacted', 'New'].map((status, i) => (
-                <div key={i} className={`h-4 rounded text-xs flex items-center justify-center ${
-                  status === 'Interview' ? 'bg-yellow-200 dark:bg-yellow-800' :
-                  status === 'Contacted' ? 'bg-blue-200 dark:bg-blue-800' :
-                  status === 'Pending' ? 'bg-orange-200 dark:bg-orange-800' :
-                  'bg-gray-200 dark:bg-gray-800'
-                }`}>
-                  {status}
-                </div>
-              ))}
-            </div>
-            <div className="space-y-1">
-              <div className="h-6 bg-green-200 dark:bg-green-800 rounded text-xs flex items-center justify-center font-semibold">Notes</div>
-              {Array.from({ length: 12 }).map((_, i) => (
-                <div key={i} className="h-4 bg-green-100 dark:bg-green-900/50 rounded text-xs flex items-center px-1">
-                  Notes...
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+      <div className="w-full h-full flex items-center justify-center p-4 lg:p-6" style={{ transform: 'translateZ(0)', willChange: 'opacity' }}>
+        <img 
+          src="/images/deliverable-section/marketing-expert.svg" 
+          alt="Marketing Expert"
+          className="w-full h-full object-contain"
+          loading="eager"
+        />
       </div>
     ),
   },
@@ -93,28 +42,13 @@ const deliverables: DeliverableType[] = [
     type: 'Customer Support',
     description: 'Offer instant, human-like support across every channel. The AI voice agent resolves queries, manages escalations, and delivers personalized assistance—reducing response times and boosting customer satisfaction.',
     preview: (
-      <div className="w-full h-full bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-950/20 dark:to-violet-950/20 rounded-2xl p-4 lg:p-6 border border-purple-200/50 dark:border-purple-800/50 shadow-xl flex items-center justify-center" style={{ transform: 'translateZ(0)', willChange: 'opacity' }}>
-        <div className="relative w-full max-w-sm h-80 bg-card rounded-xl shadow-lg border border-border p-4">
-          <div className="absolute top-4 left-4 w-16 h-4 bg-purple-200 dark:bg-purple-800 rounded"></div>
-          <div className="absolute top-10 left-4 w-24 h-2 bg-purple-100 dark:bg-purple-900 rounded"></div>
-          
-          <div className="absolute top-20 left-4 right-4 h-32 bg-gradient-to-br from-purple-100 to-violet-100 dark:from-purple-900/50 dark:to-violet-900/50 rounded-lg border border-purple-200 dark:border-purple-800 flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-purple-300 dark:bg-purple-700 rounded-full mx-auto mb-2"></div>
-              <div className="w-20 h-2 bg-purple-200 dark:bg-purple-800 rounded mx-auto"></div>
-            </div>
-          </div>
-          
-          <div className="absolute bottom-16 left-4 right-4 space-y-2">
-            <div className="h-2 bg-purple-100 dark:bg-purple-900 rounded w-full"></div>
-            <div className="h-2 bg-purple-100 dark:bg-purple-900 rounded w-3/4"></div>
-            <div className="h-2 bg-purple-100 dark:bg-purple-900 rounded w-5/6"></div>
-          </div>
-          
-          <div className="absolute bottom-4 right-4 w-16 h-8 bg-purple-500 dark:bg-purple-600 rounded text-white text-xs flex items-center justify-center">
-            CTA
-          </div>
-        </div>
+      <div className="w-full h-full flex items-center justify-center p-4 lg:p-6" style={{ transform: 'translateZ(0)', willChange: 'opacity' }}>
+        <img 
+          src="/images/deliverable-section/customer-support.svg" 
+          alt="Customer Support"
+          className="w-full h-full object-contain"
+          loading="eager"
+        />
       </div>
     ),
   },
@@ -122,43 +56,13 @@ const deliverables: DeliverableType[] = [
     type: 'Data Enrichment',
     description: 'Empower your CRM and sales systems with complete, accurate, and intelligent data. The Data Enrichment Agent automatically gathers, validates, and updates company and contact information—giving your teams the insights they need to engage smarter, close faster, and make every interaction count.',
     preview: (
-      <div className="w-full h-full bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 rounded-2xl p-4 border border-blue-200/50 dark:border-blue-800/50 shadow-xl" style={{ transform: 'translateZ(0)', willChange: 'opacity' }}>
-        <div className="space-y-4 h-full">
-          <div className="h-6 bg-blue-200 dark:bg-blue-800 rounded w-2/3"></div>
-          
-          <div className="space-y-2">
-            <div className="h-3 bg-blue-100 dark:bg-blue-900 rounded w-full"></div>
-            <div className="h-3 bg-blue-100 dark:bg-blue-900 rounded w-11/12"></div>
-            <div className="h-3 bg-blue-100 dark:bg-blue-900 rounded w-10/12"></div>
-          </div>
-          
-          <div className="pt-2">
-            <div className="h-4 bg-blue-200 dark:bg-blue-800 rounded w-1/2 mb-2"></div>
-            <div className="space-y-2">
-              <div className="h-3 bg-blue-100 dark:bg-blue-900 rounded w-full"></div>
-              <div className="h-3 bg-blue-100 dark:bg-blue-900 rounded w-9/12"></div>
-              <div className="h-3 bg-blue-100 dark:bg-blue-900 rounded w-10/12"></div>
-              <div className="h-3 bg-blue-100 dark:bg-blue-900 rounded w-8/12"></div>
-            </div>
-          </div>
-          
-          <div className="pt-2">
-            <div className="h-4 bg-blue-200 dark:bg-blue-800 rounded w-2/5 mb-2"></div>
-            <div className="space-y-2">
-              <div className="h-3 bg-blue-100 dark:bg-blue-900 rounded w-full"></div>
-              <div className="h-3 bg-blue-100 dark:bg-blue-900 rounded w-11/12"></div>
-              <div className="h-3 bg-blue-100 dark:bg-blue-900 rounded w-7/12"></div>
-            </div>
-          </div>
-          
-          <div className="bg-blue-100 dark:bg-blue-900/50 rounded-lg p-3 border border-blue-200 dark:border-blue-800">
-            <div className="h-3 bg-blue-200 dark:bg-blue-800 rounded w-1/3 mb-2"></div>
-            <div className="space-y-1">
-              <div className="h-2 bg-blue-150 dark:bg-blue-850 rounded w-full"></div>
-              <div className="h-2 bg-blue-150 dark:bg-blue-850 rounded w-4/5"></div>
-            </div>
-          </div>
-        </div>
+      <div className="w-full h-full flex items-center justify-center p-4 lg:p-6" style={{ transform: 'translateZ(0)', willChange: 'opacity' }}>
+        <img 
+          src="/images/deliverable-section/data-enrichment.svg" 
+          alt="Data Enrichment"
+          className="w-full h-full object-contain"
+          loading="eager"
+        />
       </div>
     ),
   },
@@ -166,46 +70,13 @@ const deliverables: DeliverableType[] = [
     type: 'Lead Generation',
     description: 'Fuel your growth pipeline. The Lead Generation Agent discovers, validates, and prioritizes prospects using AI-driven data intelligence—so your team focuses only on high-value opportunities.',
     preview: (
-      <div className="w-full h-full bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/20 dark:to-amber-950/20 rounded-2xl p-4 lg:p-6 border border-orange-200/50 dark:border-orange-800/50 shadow-xl" style={{ transform: 'translateZ(0)', willChange: 'opacity' }}>
-        <div className="h-full flex flex-col">
-          <div className="mb-4">
-            <div className="h-4 bg-orange-200 dark:bg-orange-800 rounded w-1/2 mb-2"></div>
-            <div className="h-2 bg-orange-100 dark:bg-orange-900 rounded w-3/4"></div>
-          </div>
-          
-          <div className="flex-1 flex items-end justify-center space-x-2">
-            {[
-              { height: '60%', label: 'Q1' },
-              { height: '80%', label: 'Q2' },
-              { height: '100%', label: 'Q3' },
-              { height: '75%', label: 'Q4' },
-              { height: '90%', label: 'Q5' }
-            ].map((bar, i) => (
-              <div key={i} className="flex flex-col items-center">
-                <div 
-                  className="w-8 bg-gradient-to-t from-orange-400 to-orange-300 dark:from-orange-600 dark:to-orange-500 rounded-t"
-                  style={{ height: bar.height }}
-                ></div>
-                <div className="text-xs mt-1 text-orange-600 dark:text-orange-400">{bar.label}</div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="mt-4 grid grid-cols-3 gap-2">
-            <div className="bg-orange-100 dark:bg-orange-900/50 rounded p-2 text-center">
-              <div className="text-lg font-bold text-orange-600 dark:text-orange-400">85%</div>
-              <div className="text-xs text-orange-500 dark:text-orange-500">Growth</div>
-            </div>
-            <div className="bg-orange-100 dark:bg-orange-900/50 rounded p-2 text-center">
-              <div className="text-lg font-bold text-orange-600 dark:text-orange-400">$2.4M</div>
-              <div className="text-xs text-orange-500 dark:text-orange-500">Revenue</div>
-            </div>
-            <div className="bg-orange-100 dark:bg-orange-900/50 rounded p-2 text-center">
-              <div className="text-lg font-bold text-orange-600 dark:text-orange-400">156</div>
-              <div className="text-xs text-orange-500 dark:text-orange-500">Clients</div>
-            </div>
-          </div>
-        </div>
+      <div className="w-full h-full flex items-center justify-center p-4 lg:p-6" style={{ transform: 'translateZ(0)', willChange: 'opacity' }}>
+        <img 
+          src="/images/deliverable-section/lead-generation.svg" 
+          alt="Lead Generation"
+          className="w-full h-full object-contain"
+          loading="eager"
+        />
       </div>
     ),
   },
@@ -273,7 +144,7 @@ export function DeliverablesSection() {
               Build Specialized AI Agents for Every Workflow
             </h2>
             <p className="text-muted-foreground text-center text-balance font-medium max-w-3xl text-lg">
-            From automating daily tasks to executing high-impact business operations, Salesix lets you create autonomous AI agents that adapt to your objectives and deliver measurable outcomes.
+            Salesix lets you create autonomous AI agents that automate tasks, execute goals, and deliver real business impact.
             </p>
           </div>
 

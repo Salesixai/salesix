@@ -281,6 +281,7 @@ export function OpenSourceSection() {
               gridGap={4}
               squareSize={2}
               maxOpacity={0.5}
+              color="#22c55e"
             />
           </motion.div>
         </div>

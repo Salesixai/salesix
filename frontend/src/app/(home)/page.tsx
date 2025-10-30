@@ -58,6 +58,10 @@ export default function Home() {
             {/* <CompanyShowcase /> */}
             <CapabilitiesSection />
             
+            <Suspense fallback={<SectionLoader />}>
+              <DeliverablesSection />
+            </Suspense>
+            
             {/* Below the fold - Lazy loaded with Suspense */}
             <Suspense fallback={<SectionLoader />}>
               <FeatureSection />
@@ -65,10 +69,6 @@ export default function Home() {
             
             <Suspense fallback={<SectionLoader />}>
               <BentoSection />
-            </Suspense>
-            
-            <Suspense fallback={<SectionLoader />}>
-              <DeliverablesSection />
             </Suspense>
             
             <Suspense fallback={<SectionLoader />}>

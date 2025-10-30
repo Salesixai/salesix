@@ -17,14 +17,16 @@ const AgentCard = ({ agent }: { agent: any }) => {
   const IconComponent = agent.icon;
   
   return (
-    <div className="flex flex-col items-center justify-between p-6 border-r border-b border-border min-h-[280px] group transition-colors duration-300 hover:bg-accent/5">
+    <div className="flex flex-col justify-between p-6 border-r border-b border-border min-h-[280px] group transition-colors duration-300 hover:bg-accent/5">
       {/* Icon */}
-      <div className="mb-4 text-secondary">
-        <IconComponent className="w-12 h-12" />
+      <div className="flex items-center justify-center size-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
+        <div className="text-secondary">
+          <IconComponent className="size-6" />
+        </div>
       </div>
       
       {/* Content */}
-      <div className="space-y-3 flex-1 text-center">
+      <div className="space-y-3 flex-1">
         {/* Name */}
         <h3 className="text-xl font-semibold tracking-tight">
           {agent.name}
@@ -106,7 +108,7 @@ export function AgentShowcaseSection() {
               Build Your AI Team
             </h2>
             <p className="text-muted-foreground text-center text-balance font-medium">
-              Specialized AI Workers ready to transform your workflow. Choose from our curated team of experts.
+            Unite automation and intelligence with AI agents tailored for every industry.
             </p>
           </SectionHeader>
 

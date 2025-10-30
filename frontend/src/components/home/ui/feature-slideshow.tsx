@@ -83,6 +83,7 @@ type FeatureItem = {
   content: string;
   image?: string;
   video?: string;
+  animation?: ReactNode; // Support for React components like bento animations
 };
 type FeatureProps = {
   collapseDelay?: number;
@@ -201,6 +202,15 @@ export const Feature = ({
       );
     }
 
+    // Check for animation component first (bento animations)
+    if (currentItem.animation) {
+      return (
+        <div className="relative h-full w-full overflow-hidden">
+          {currentItem.animation}
+        </div>
+      );
+    }
+
     if (currentItem.image) {
       return (
         <div className="relative h-full w-full overflow-hidden">
@@ -272,7 +282,7 @@ export const Feature = ({
             }`}
           >
             <Accordion.Root
-              className="w-full h-full flex flex-col gap-8"
+              className="w-full h-full flex flex-col gap-8 justify-center"
               type="single"
               defaultValue={`item-${currentIndex}`}
               value={`item-${currentIndex}`}
@@ -345,7 +355,7 @@ export const Feature = ({
             </Accordion.Root>
           </div>
           <div
-            className={`col-span-5 h-[350px] min-h-[200px] w-auto lg:col-span-3 ${
+            className={`col-span-5 h-[550px] min-h-[200px] w-auto lg:col-span-3 flex items-center justify-center rounded-4xl border border-border/80 overflow-hidden ${
               ltr && 'md:order-1'
             }`}
           >

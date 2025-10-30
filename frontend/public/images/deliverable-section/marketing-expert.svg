@@ -1,0 +1,87 @@
+<svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="marketingGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0.05" />
+    </linearGradient>
+    <linearGradient id="marketingGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0.2" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="300" cy="300" r="250" fill="url(#marketingGrad1)"/>
+  
+  <!-- Central Hub (Brain/Analytics) -->
+  <g filter="url(#glow)">
+    <circle cx="300" cy="300" r="60" fill="#22c55e" opacity="0.15" stroke="#22c55e" stroke-width="2"/>
+    <circle cx="300" cy="300" r="45" fill="#22c55e" opacity="0.1"/>
+    
+    <!-- Chart Bars inside hub -->
+    <rect x="280" y="310" width="8" height="25" rx="4" fill="#22c55e" opacity="0.8"/>
+    <rect x="292" y="300" width="8" height="35" rx="4" fill="#22c55e" opacity="0.9"/>
+    <rect x="304" y="295" width="8" height="40" rx="4" fill="#22c55e"/>
+  </g>
+  
+  <!-- Channel Nodes -->
+  <!-- Email Node (Top Left) -->
+  <g transform="translate(150, 150)">
+    <circle cx="0" cy="0" r="50" fill="#22c55e" opacity="0.1" stroke="#22c55e" stroke-width="2"/>
+    <rect x="-20" y="-15" width="40" height="30" rx="4" fill="none" stroke="#22c55e" stroke-width="2"/>
+    <path d="M -20 -15 L 0 5 L 20 -15" stroke="#22c55e" stroke-width="2" fill="none"/>
+    <line x1="50" y1="50" x2="240" y2="240" stroke="#22c55e" stroke-width="2" stroke-dasharray="5 5" opacity="0.3"/>
+  </g>
+  
+  <!-- Social Media Node (Top Right) -->
+  <g transform="translate(450, 150)">
+    <circle cx="0" cy="0" r="50" fill="#22c55e" opacity="0.1" stroke="#22c55e" stroke-width="2"/>
+    <circle cx="-10" cy="-5" r="8" fill="#22c55e" opacity="0.8"/>
+    <circle cx="10" cy="-5" r="8" fill="#22c55e" opacity="0.8"/>
+    <path d="M -15 8 Q 0 18 15 8" stroke="#22c55e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <line x1="-50" y1="50" x2="-140" y2="140" stroke="#22c55e" stroke-width="2" stroke-dasharray="5 5" opacity="0.3"/>
+  </g>
+  
+  <!-- SMS Node (Bottom) -->
+  <g transform="translate(300, 480)">
+    <circle cx="0" cy="0" r="50" fill="#22c55e" opacity="0.1" stroke="#22c55e" stroke-width="2"/>
+    <rect x="-18" y="-12" width="36" height="24" rx="4" fill="none" stroke="#22c55e" stroke-width="2"/>
+    <line x1="-10" y1="-4" x2="10" y2="-4" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-10" y1="2" x2="6" y2="2" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="-30" x2="0" y2="-180" stroke="#22c55e" stroke-width="2" stroke-dasharray="5 5" opacity="0.3"/>
+  </g>
+  
+  <!-- Performance Rings -->
+  <circle cx="300" cy="300" r="140" fill="none" stroke="#22c55e" stroke-width="1" opacity="0.2"/>
+  <circle cx="300" cy="300" r="180" fill="none" stroke="#22c55e" stroke-width="1" opacity="0.15"/>
+  <circle cx="300" cy="300" r="220" fill="none" stroke="#22c55e" stroke-width="1" opacity="0.1"/>
+  
+  <!-- ROI Badge -->
+  <g transform="translate(430, 350)">
+    <rect x="0" y="0" width="120" height="60" rx="30" fill="#22c55e" opacity="0.15" stroke="#22c55e" stroke-width="2"/>
+    <text x="60" y="28" font-family="system-ui, -apple-system" font-size="22" font-weight="700" fill="#22c55e" text-anchor="middle">ROI</text>
+    <text x="60" y="48" font-family="system-ui, -apple-system" font-size="18" font-weight="700" fill="#22c55e" text-anchor="middle">+120%</text>
+  </g>
+  
+  <!-- Success Metrics -->
+  <g transform="translate(50, 350)">
+    <rect x="0" y="0" width="100" height="60" rx="8" fill="#22c55e" opacity="0.1" stroke="#22c55e" stroke-width="1.5"/>
+    <text x="50" y="28" font-family="system-ui, -apple-system" font-size="24" font-weight="700" fill="#22c55e" text-anchor="middle">68%</text>
+    <text x="50" y="48" font-family="system-ui, -apple-system" font-size="11" fill="#22c55e" opacity="0.7" text-anchor="middle">Engagement</text>
+  </g>
+  
+  <!-- Sparkles -->
+  <g opacity="0.6">
+    <path d="M 480 280 L 483 288 L 491 291 L 483 294 L 480 302 L 477 294 L 469 291 L 477 288 Z" fill="#22c55e"/>
+    <path d="M 120 280 L 122 286 L 128 288 L 122 290 L 120 296 L 118 290 L 112 288 L 118 286 Z" fill="#22c55e"/>
+    <path d="M 500 450 L 503 458 L 511 461 L 503 464 L 500 472 L 497 464 L 489 461 L 497 458 Z" fill="#22c55e"/>
+  </g>
+</svg>
+

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { SubmitButton } from '@/components/ui/submit-button';
 import { Input } from '@/components/ui/input';
 import GoogleSignIn from '@/components/GoogleSignIn';
@@ -19,6 +20,7 @@ import {
 import { useAuth } from '@/components/AuthProvider';
 import { useAuthMethodTracking } from '@/lib/stores/auth-tracking';
 import { toast } from 'sonner';
+import { useTheme } from 'next-themes';
 
 import {
   Dialog,
@@ -44,6 +46,7 @@ function LoginContent() {
   const isSignUp = mode === 'signup';
   const isMobile = useMediaQuery('(max-width: 768px)');
   const [mounted, setMounted] = useState(false);
+  const { theme, resolvedTheme } = useTheme();
 
   const { wasLastMethod: wasEmailLastMethod, markAsUsed: markEmailAsUsed } = useAuthMethodTracking('email');
 
@@ -268,8 +271,23 @@ function LoginContent() {
         </div>
         <div className="flex min-h-screen">
           <div className="relative flex-1 flex items-center justify-center p-4 lg:p-8">
+            
             <div className="w-full max-w-sm">
               <div className="mb-4 flex items-center flex-col gap-3 sm:gap-4 justify-center">
+                {mounted && (
+                  <Image
+                    src={
+                      resolvedTheme === 'dark'
+                        ? '/salesix-logo-white.png'
+                        : '/salesix-logo-black.png'
+                    }
+                    alt="Salesix Logo"
+                    width={180}
+                    height={55}
+                    className="h-9 w-auto object-contain mb-4"
+                    priority
+                  />
+                )}
                 <h1 className="text-xl sm:text-2xl font-semibold text-foreground text-center leading-tight">
                   {isSignUp ? 'Create your account' : 'Log into your account'}
                 </h1>
@@ -364,6 +382,9 @@ function LoginContent() {
         <div className="hidden lg:flex flex-1 items-center justify-center bg-sidebar relative overflow-hidden">
           <div className="absolute inset-0">
             <Ripple />
+          </div>
+          <div className="relative z-10">
+            <KortixLogo size={100} />
           </div>
         </div>
       </div>

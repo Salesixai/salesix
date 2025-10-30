@@ -1,0 +1,114 @@
+<svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="leadGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0.05" />
+    </linearGradient>
+    <linearGradient id="qualityGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0.3" />
+    </linearGradient>
+    <filter id="leadShadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8"/>
+      <feOffset dx="0" dy="4"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.18"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="300" cy="300" r="250" fill="url(#leadGrad)"/>
+  
+  <!-- Magnifying Glass -->
+  <g filter="url(#leadShadow)">
+    <circle cx="280" cy="270" r="100" fill="#22c55e" opacity="0.05" stroke="#22c55e" stroke-width="6"/>
+    <circle cx="280" cy="270" r="80" fill="none" stroke="#22c55e" stroke-width="3" opacity="0.3"/>
+    
+    <!-- Handle -->
+    <line x1="360" y1="350" x2="420" y2="410" stroke="#22c55e" stroke-width="12" stroke-linecap="round"/>
+    <line x1="360" y1="350" x2="420" y2="410" stroke="#22c55e" stroke-width="8" stroke-linecap="round" opacity="0.3"/>
+  </g>
+  
+  <!-- Lead Profiles inside magnifying glass -->
+  <g opacity="0.8">
+    <!-- Lead 1 -->
+    <g transform="translate(240, 240)">
+      <circle cx="0" cy="0" r="20" fill="#22c55e" opacity="0.15" stroke="#22c55e" stroke-width="2"/>
+      <circle cx="0" cy="-4" r="6" fill="#22c55e"/>
+      <path d="M -8 8 Q -8 2 0 2 Q 8 2 8 8" fill="#22c55e"/>
+    </g>
+    
+    <!-- Lead 2 -->
+    <g transform="translate(320, 240)">
+      <circle cx="0" cy="0" r="20" fill="#22c55e" opacity="0.15" stroke="#22c55e" stroke-width="2"/>
+      <circle cx="0" cy="-4" r="6" fill="#22c55e"/>
+      <path d="M -8 8 Q -8 2 0 2 Q 8 2 8 8" fill="#22c55e"/>
+    </g>
+    
+    <!-- Lead 3 (Qualified - with star) -->
+    <g transform="translate(280, 300)">
+      <circle cx="0" cy="0" r="24" fill="url(#qualityGrad)" stroke="#22c55e" stroke-width="2.5"/>
+      <circle cx="0" cy="-4" r="6" fill="#ffffff"/>
+      <path d="M -8 8 Q -8 2 0 2 Q 8 2 8 8" fill="#ffffff"/>
+      <!-- Star -->
+      <path d="M 16 -16 L 18 -12 L 22 -12 L 19 -9 L 20 -5 L 16 -7 L 12 -5 L 13 -9 L 10 -12 L 14 -12 Z" 
+            fill="#22c55e" stroke="#22c55e" stroke-width="1"/>
+    </g>
+  </g>
+  
+  <!-- Lead Funnel -->
+  <g transform="translate(420, 150)" opacity="0.9">
+    <!-- Wide top -->
+    <rect x="0" y="0" width="140" height="50" rx="8" fill="#22c55e" opacity="0.1" stroke="#22c55e" stroke-width="2"/>
+    <text x="70" y="30" font-family="system-ui, -apple-system" font-size="16" font-weight="600" fill="#22c55e" text-anchor="middle">All Leads</text>
+    
+    <!-- Middle -->
+    <rect x="20" y="60" width="100" height="45" rx="8" fill="#22c55e" opacity="0.15" stroke="#22c55e" stroke-width="2"/>
+    <text x="70" y="87" font-family="system-ui, -apple-system" font-size="14" font-weight="600" fill="#22c55e" text-anchor="middle">Filtered</text>
+    
+    <!-- Narrow bottom (qualified) -->
+    <rect x="40" y="115" width="60" height="50" rx="8" fill="url(#qualityGrad)" stroke="#22c55e" stroke-width="2"/>
+    <text x="70" y="135" font-family="system-ui, -apple-system" font-size="13" font-weight="600" fill="#22c55e" text-anchor="middle">Quality</text>
+    <text x="70" y="150" font-family="system-ui, -apple-system" font-size="13" font-weight="600" fill="#22c55e" text-anchor="middle">Leads</text>
+  </g>
+  
+  <!-- AI Badge -->
+  <g transform="translate(100, 180)">
+    <circle cx="0" cy="0" r="45" fill="#22c55e" opacity="0.15" stroke="#22c55e" stroke-width="2.5"/>
+    <!-- Brain icon -->
+    <path d="M -15 -10 Q -15 -18 -8 -18 Q 0 -18 0 -10 Q 0 -5 3 -5 Q 6 -5 6 -10 Q 6 -18 14 -18" 
+          stroke="#22c55e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M -15 5 Q -15 13 -8 13 Q 0 13 0 5 Q 0 0 3 0 Q 6 0 6 5 Q 6 13 14 13" 
+          stroke="#22c55e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <circle cx="-8" cy="-2" r="2" fill="#22c55e"/>
+    <circle cx="6" cy="-2" r="2" fill="#22c55e"/>
+    <text x="0" y="28" font-family="system-ui, -apple-system" font-size="14" font-weight="700" fill="#22c55e" text-anchor="middle">AI</text>
+  </g>
+  
+  <!-- Stats Dashboard -->
+  <g transform="translate(100, 420)">
+    <rect x="0" y="0" width="180" height="80" rx="12" fill="#22c55e" opacity="0.15" stroke="#22c55e" stroke-width="2"/>
+    <text x="90" y="35" font-family="system-ui, -apple-system" font-size="32" font-weight="700" fill="#22c55e" text-anchor="middle">247</text>
+    <text x="90" y="58" font-family="system-ui, -apple-system" font-size="14" fill="#22c55e" opacity="0.7" text-anchor="middle">Qualified This Week</text>
+  </g>
+  
+  <!-- Success Rate -->
+  <g transform="translate(320, 440)">
+    <rect x="0" y="0" width="120" height="70" rx="10" fill="#22c55e" opacity="0.1" stroke="#22c55e" stroke-width="2"/>
+    <text x="60" y="32" font-family="system-ui, -apple-system" font-size="28" font-weight="700" fill="#22c55e" text-anchor="middle">85%</text>
+    <text x="60" y="52" font-family="system-ui, -apple-system" font-size="11" fill="#22c55e" opacity="0.7" text-anchor="middle">Success Rate</text>
+  </g>
+  
+  <!-- Decorative elements -->
+  <g opacity="0.4">
+    <circle cx="520" cy="300" r="6" fill="#22c55e"/>
+    <circle cx="80" cy="320" r="4" fill="#22c55e"/>
+    <circle cx="540" cy="420" r="5" fill="#22c55e"/>
+  </g>
+</svg>
+

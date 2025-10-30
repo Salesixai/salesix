@@ -1,7 +1,10 @@
 import { FirstBentoAnimation } from '@/components/home/first-bento-animation';
-import { FourthBentoAnimation } from '@/components/home/fourth-bento-animation';
 import { SecondBentoAnimation } from '@/components/home/second-bento-animation';
 import { ThirdBentoAnimation } from '@/components/home/third-bento-animation';
+import { FourthBentoAnimation } from '@/components/home/fourth-bento-animation';
+import { FifthBentoAnimation } from '@/components/home/fifth-bento-animation';
+import { SixthBentoAnimation } from '@/components/home/sixth-bento-animation';
+import { SeventhBentoAnimation } from '@/components/home/seventh-bento-animation';
 import { FlickeringGrid } from '@/components/home/ui/flickering-grid';
 import { Globe } from '@/components/home/ui/globe';
 import { cn } from '@/lib/utils';
@@ -58,26 +61,26 @@ export interface PricingTier {
 }
 
 export const siteConfig = {
-  name: 'Kortix Suna',
-  description: 'The Generalist AI Worker that can act on your behalf.',
+  name: 'Salesix',
+  description: 'The AI Sales Agent that can act on your behalf.',
   cta: 'Start Free',
   url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
-  keywords: ['AI Worker', 'Generalist AI', 'Open Source AI', 'Autonomous Agent'],
+  keywords: ['AI Sales Agent', 'Sales Automation', 'Marketing Automation', 'Lead Generation', 'AI Workers', 'Business Automation', 'Intelligent Agents'],
   links: {
-    email: 'support@kortix.ai',
-    twitter: 'https://x.com/kortixai',
-    // discord: 'https://discord.gg/kortixai',
-    github: 'https://github.com/Kortix-ai/Suna',
-    instagram: 'https://instagram.com/kortixai',
+    email: 'support@salesix.ai',
+    twitter: 'https://x.com/salesix',
+    // discord: 'https://discord.gg/salesix',
+    github: 'https://github.com/salesix/',
+    instagram: 'https://instagram.com/salesix',
   },
   nav: {
     links: [
       { id: 1, name: 'Home', href: '#hero' },
-      { id: 2, name: 'Process', href: '#process' },
-      // { id: 3, name: 'Use Cases', href: '#use-cases' },
-      { id: 4, name: 'Open Source', href: '#open-source' },
+      { id: 2, name: 'Features', href: '#capabilities' },
+      { id: 3, name: 'Process', href: '#features' },
+      { id: 4, name: 'Solutions', href: '#agent-showcase' },
       { id: 5, name: 'Pricing', href: '#pricing' },
-      { id: 6, name: 'Enterprise', href: '/enterprise' },
+      // { id: 6, name: 'Enterprise', href: '/enterprise' },
     ],
   },
   hero: {
@@ -108,11 +111,11 @@ export const siteConfig = {
       </svg>
     ),
     badge: 'NEXT-GEN AI AGENTIC PLATFORM',
-    githubUrl: 'https://github.com/kortix-ai/suna',
+    githubUrl: 'https://github.com/salesixai',
     title: 'Salesix – Build, manage and train your AI Workforce.',
     description:
       'Salesix – Simplify operations and supercharge growth with Salesix—your AI-powered automation platform built for results.',
-    inputPlaceholder: 'Ask Suna to...',
+    inputPlaceholder: 'Ask Salesix to...',
   },
   cloudPricingItems: [
     {
@@ -507,40 +510,36 @@ export const siteConfig = {
         id: 1,
         title: 'Define Your Goal',
         content:
-          'Start by telling Salesix what you want to achieve—whether it’s scheduling calls, qualifying leads, or automating customer follow-ups.',
-        image:
-          'https://images.unsplash.com/photo-1720371300677-ba4838fa0678?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          "Start by telling Salesix what you want to achieve—whether it's scheduling calls, qualifying leads, or automating customer follow-ups.",
+        animation: <FirstBentoAnimation />,
       },
       {
         id: 2,
         title: 'AI Analysis & Strategy Planning',
         content:
-          'SSalesix intelligently interprets your intent, analyzes data, and creates the most effective plan to accomplish the task with precision.',
-        image:
-          'https://images.unsplash.com/photo-1686170287433-c95faf6d3608?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8fA%3D%3D',
+          'Salesix intelligently interprets your intent, analyzes data, and creates the most effective plan to accomplish the task with precision.',
+        animation: <FifthBentoAnimation />,
       },
       {
         id: 3,
         title: 'Autonomous Execution',
         content:
           'Your AI agents take charge—handling conversations, executing workflows, and coordinating across systems without human intervention.',
-        image:
-          'https://images.unsplash.com/photo-1720378042271-60aff1e1c538?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D',
+        animation: <SixthBentoAnimation />,
       },
       {
         id: 4,
         title: 'Results & Learning',
         content:
           'Review clear performance results while Salesix continuously learns from every interaction, becoming smarter and more efficient over time.',
-        image:
-          'https://images.unsplash.com/photo-1666882990322-e7f3b8df4f75?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D',
+        animation: <SeventhBentoAnimation />,
       },
     ],
   },
   bentoSection: {
-    title: 'Empower Your Workflow with Kortix Suna',
+    title: 'Empower Your Workflow with Salesix',
     description:
-      'Let Kortix Suna act on your behalf with advanced AI capabilities, seamless integrations, and autonomous task execution.',
+      'Let Salesix act on your behalf with advanced AI capabilities, seamless integrations, and autonomous task execution.',
     items: [
       {
         id: 1,
@@ -904,7 +903,7 @@ export const siteConfig = {
   },
   quoteSection: {
     quote:
-      'Kortix Suna has transformed how we approach everyday tasks. The level of automation it provides, combined with its open source nature, makes it an invaluable tool for our entire organization.',
+      'Salesix has transformed how we approach everyday tasks. The level of automation it provides, combined with its open source nature, makes it an invaluable tool for our entire organization.',
     author: {
       name: 'Alex Johnson',
       role: 'CTO, Innovatech',
@@ -914,7 +913,7 @@ export const siteConfig = {
   pricing: {
     title: 'Open Source & Free Forever',
     description:
-      'Kortix Suna is 100% open source and free to use. No hidden fees, no premium features locked behind paywalls.',
+      'Salesix is 100% open source and free to use. No hidden fees, no premium features locked behind paywalls.',
     pricingItems: [
       {
         name: 'Community',
@@ -1231,11 +1230,11 @@ export const siteConfig = {
   },
   footerLinks: [
     {
-      title: 'Kortix',
+      title: 'Salesix',
       links: [
-        { id: 1, title: 'About', url: 'https://kortix.ai' },
-        { id: 3, title: 'Contact', url: 'mailto:hey@kortix.ai' },
-        { id: 4, title: 'Careers', url: 'https://kortix.ai/careers' },
+        { id: 1, title: 'About', url: 'https://salesix.ai' },
+        { id: 3, title: 'Contact', url: 'mailto:support@salesix.ai' },
+        { id: 4, title: 'Careers', url: 'https://salesix.ai/careers' },
       ],
     },
     {
@@ -1244,10 +1243,10 @@ export const siteConfig = {
         {
           id: 5,
           title: 'Documentation',
-          url: 'https://github.com/Kortix-ai/Suna',
+          url: 'https://github.com/salesixai',
         },
-        { id: 7, title: 'Discord', url: 'https://discord.gg/Py6pCBUUPw' },
-        { id: 8, title: 'GitHub', url: 'https://github.com/Kortix-ai/Suna' },
+        { id: 7, title: 'Discord', url: 'https://discord.gg/salesix' },
+        { id: 8, title: 'GitHub', url: 'https://github.com/salesixai' },
       ],
     },
     {
@@ -1266,7 +1265,7 @@ export const siteConfig = {
         {
           id: 11,
           title: 'License Apache 2.0',
-          url: 'https://github.com/Kortix-ai/Suna/blob/main/LICENSE',
+          url: 'https://github.com/salesixai/salesix/blob/main/LICENSE',
         },
       ],
     },

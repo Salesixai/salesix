@@ -47,7 +47,7 @@ export function FooterSection() {
 
               <div className="flex items-center gap-4">
             <a
-              href="https://github.com/kortix-ai/suna"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -143,7 +143,7 @@ export function FooterSection() {
             className="h-full w-full"
             squareSize={2}
             gridGap={tablet ? 2 : 3}
-            color="#6B7280"
+            color="#22c55e"
             maxOpacity={0.3}
             flickerChance={0.1}
           />

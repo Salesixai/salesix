@@ -4,6 +4,25 @@ import { siteConfig } from '@/lib/home';
 import { motion } from 'motion/react';
 import React, { useRef, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
+import {
+  getActiveMenuSection,
+  SCROLL_OFFSET,
+  MANUAL_SCROLL_TIMEOUT,
+} from '@/lib/navigation-config';
+
+/**
+ * Desktop Navigation Menu Component
+ * 
+ * Displays the main navigation menu with smooth scrolling and animated indicator.
+ * Uses centralized configuration from /lib/navigation-config.ts to ensure
+ * consistency with mobile navigation.
+ * 
+ * Features:
+ * - Animated indicator that follows the active menu item
+ * - Smooth scroll to sections with offset
+ * - Automatic active state detection based on scroll position
+ * - Support for multi-section menu items
+ */
 
 interface NavItem {
   name: string;
@@ -45,28 +64,13 @@ export function NavMenu() {
       // Skip scroll handling during manual click scrolling or if not on homepage
       if (isManualScroll || pathname !== '/') return;
 
-      const sections = navs.filter(item => item.href.startsWith('#')).map((item) => item.href.substring(1));
-
-      // Find the section closest to viewport top
-      let closestSection = sections[0];
-      let minDistance = Infinity;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          const distance = Math.abs(rect.top - 100); // Offset by 100px to trigger earlier
-          if (distance < minDistance) {
-            minDistance = distance;
-            closestSection = section;
-          }
-        }
-      }
+      // Get the active menu section based on scroll position
+      const activeMenuSection = getActiveMenuSection(SCROLL_OFFSET);
 
       // Update active section and nav indicator
-      setActiveSection(closestSection);
+      setActiveSection(activeMenuSection);
       const navItem = ref.current?.querySelector(
-        `[href="#${closestSection}"]`,
+        `[href="#${activeMenuSection}"]`,
       )?.parentElement;
       if (navItem) {
         const rect = navItem.getBoundingClientRect();
@@ -132,7 +136,7 @@ export function NavMenu() {
 
       // Calculate exact scroll position
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - 100; // 100px offset
+      const offsetPosition = elementPosition + window.pageYOffset - SCROLL_OFFSET;
 
       // Smooth scroll to exact position
       window.scrollTo({
@@ -143,7 +147,7 @@ export function NavMenu() {
       // Reset manual scroll flag after animation completes
       setTimeout(() => {
         setIsManualScroll(false);
-      }, 500); // Adjust timing to match scroll animation duration
+      }, MANUAL_SCROLL_TIMEOUT);
     }
   };
 

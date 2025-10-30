@@ -391,7 +391,7 @@ export function HeroSection() {
             </h1>
             <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tighter text-balance text-center mb-2">
               <RotatingText 
-                texts={['Sales Automation', 'Marketing Automation', 'Research Automation', 'Data Analysis Automation','Lead Generation', 'Analytics', 'AI Voice Agents','Email Automation','SMS Automation']}
+                texts={['Sales Automation', 'Marketing Automation', 'Data Enrichment','Lead Generation', 'Workflow Automation', 'AI Voice Agents','Email Automation','SMS Automation', 'Research & Analysis']}
                 className="text-secondary"
               />
             </h1>
@@ -447,7 +447,7 @@ export function HeroSection() {
               </button> */}
             </div>
             <DialogDescription className="text-muted-foreground">
-              Sign in or create an account to talk with Suna
+              Sign in or create an account to talk with Salesix
             </DialogDescription>
           </DialogHeader>
 

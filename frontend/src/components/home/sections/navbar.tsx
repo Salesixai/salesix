@@ -13,6 +13,7 @@ import { useTheme } from 'next-themes';
 import { useAuth } from '@/components/AuthProvider';
 import { useGitHubStars } from '@/hooks/use-github-stars';
 import { useRouter, usePathname } from 'next/navigation';
+import { getActiveMenuSection, SCROLL_OFFSET } from '@/lib/navigation-config';
 
 const INITIAL_WIDTH = '70rem';
 const MAX_WIDTH = '1000px';
@@ -53,6 +54,20 @@ const drawerMenuVariants = {
   visible: { opacity: 1 },
 };
 
+/**
+ * Main Navbar Component
+ * 
+ * Responsive navigation bar that includes:
+ * - Desktop navigation menu (NavMenu component)
+ * - Mobile drawer menu
+ * - Theme toggle
+ * - GitHub stars display
+ * - Auth/Dashboard buttons
+ * 
+ * The navbar uses centralized configuration from /lib/navigation-config.ts
+ * to ensure consistency with the desktop menu for active state detection.
+ * This prevents duplicate code and potential bugs from configuration mismatches.
+ */
 export function Navbar() {
   const { scrollY } = useScroll();
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -61,7 +76,7 @@ export function Navbar() {
   const { theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const { user } = useAuth();
-  const { formattedStars, loading: starsLoading } = useGitHubStars('kortix-ai', 'suna');
+  // const { formattedStars, loading: starsLoading } = useGitHubStars('kortix-ai', '');
   const router = useRouter();
   const pathname = usePathname();
 
@@ -71,27 +86,18 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = siteConfig.nav.links.map((item) =>
-        item.href.substring(1),
-      );
+      if (pathname !== '/') return;
 
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom >= 150) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
+      // Get the active menu section based on scroll position
+      const activeMenuSection = getActiveMenuSection(SCROLL_OFFSET);
+      setActiveSection(activeMenuSection);
     };
 
     window.addEventListener('scroll', handleScroll);
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     const unsubscribe = scrollY.on('change', (latest) => {
@@ -153,7 +159,7 @@ export function Navbar() {
             <div className="flex items-center justify-end flex-shrink-0 w-auto md:w-[200px] ml-auto">
               <div className="flex flex-row items-center gap-2 md:gap-3 shrink-0">
                 <div className="flex items-center space-x-3">
-                  <Link
+                  {/* <Link
                     href="https://github.com/kortix-ai/suna"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -164,7 +170,7 @@ export function Navbar() {
                     <span className={`text-xs font-medium transition-opacity duration-200 ${starsLoading ? 'opacity-50' : 'opacity-100'}`}>
                       {formattedStars}
                     </span>
-                  </Link>
+                  </Link> */}
                   {user ? (
                     <Link
                       className="bg-secondary h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
@@ -177,7 +183,7 @@ export function Navbar() {
                       className="bg-secondary h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
                       href="/auth"
                     >
-                      Try free
+                      Get Started
                     </Link>
                   )}
                 </div>
@@ -225,13 +231,13 @@ export function Navbar() {
                   <Link href="/" className="flex items-center gap-3">
                     <Image
                       src={logoSrc}
-                      alt="Kortix Logo"
+                      alt="Salesix Logo"
                       width={120}
                       height={22}
                       priority
                     />
                     <span className="font-medium text-primary text-sm">
-                      / Suna
+                      / Salesix
                     </span>
                   </Link>
                   <button
@@ -291,7 +297,7 @@ export function Navbar() {
                 </motion.ul>
 
                 {/* GitHub link for mobile */}
-                <Link
+                {/* <Link
                   href="https://github.com/kortix-ai/suna"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -302,7 +308,7 @@ export function Navbar() {
                   <span className={`text-xs font-medium transition-opacity duration-200 ${starsLoading ? 'opacity-50' : 'opacity-100'}`}>
                     ⭐ {formattedStars}
                   </span>
-                </Link>
+                </Link> */}
 
                 {/* Action buttons */}
                 <div className="flex flex-col gap-2">
