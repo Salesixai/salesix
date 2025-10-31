@@ -336,6 +336,7 @@ export function HeroSection() {
                                 onOutputFormatChange={setSelectedOutputFormat}
                                 selectedTemplate={selectedTemplate}
                                 onTemplateChange={setSelectedTemplate}
+                                showVoiceDemo={true}
                             />
                         </div>
                     )}

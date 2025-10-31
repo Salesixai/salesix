@@ -18,7 +18,7 @@ import { handleFiles, FileUploadHandler } from './file-upload-handler';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Loader2, ArrowUp, X, Image as ImageIcon, Presentation, BarChart3, FileText, Search, Users, Code2, Sparkles, Brain as BrainIcon, MessageSquare } from 'lucide-react';
+import { Loader2, ArrowUp, X, Image as ImageIcon, Presentation, BarChart3, FileText, Search, Users, Code2, Sparkles, Brain as BrainIcon, MessageSquare, Phone, Megaphone, Building2 } from 'lucide-react';
 import { VoiceRecorder } from './voice-recorder';
 import { UnifiedConfigMenu } from './unified-config-menu';
 import { AttachmentGroup } from '../attachment-group';
@@ -50,6 +50,8 @@ const getModeIcon = (mode: string) => {
       return <Search className={iconClass} />;
     case 'people':
       return <Users className={iconClass} />;
+    case 'company':
+      return <Building2 className={iconClass} />;
     case 'code':
       return <Code2 className={iconClass} />;
     case 'docs':
@@ -60,6 +62,10 @@ const getModeIcon = (mode: string) => {
       return <Presentation className={iconClass} />;
     case 'image':
       return <ImageIcon className={iconClass} />;
+    case 'voice':
+      return <Phone className={iconClass} />;
+    case 'marketing':
+      return <Megaphone className={iconClass} />;
     default:
       return null;
   }

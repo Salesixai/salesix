@@ -16,10 +16,15 @@ import {
   Table,
   LayoutDashboard,
   FileBarChart,
+  Phone,
+  Megaphone,
+  Building2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Card } from '@/components/ui/card';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 
 interface SunaModesPanelProps {
   selectedMode: string | null;
@@ -32,9 +37,10 @@ interface SunaModesPanelProps {
   onOutputFormatChange?: (format: string | null) => void;
   selectedTemplate?: string | null;
   onTemplateChange?: (template: string | null) => void;
+  showVoiceDemo?: boolean;
 }
 
-type ModeType = 'image' | 'slides' | 'data' | 'docs' | 'people' | 'research';
+type ModeType = 'image' | 'slides' | 'data' | 'docs' | 'people' | 'research' | 'voice' | 'marketing' | 'company';
 
 interface Mode {
   id: ModeType;
@@ -62,84 +68,165 @@ interface Mode {
 
 const modes: Mode[] = [
   {
-    id: 'image',
-    label: 'Image',
-    icon: <ImageIcon className="w-4 h-4" />,
+    id: 'voice',
+    label: 'Voice Agent',
+    icon: <Phone className="w-4 h-4" />,
     samplePrompts: [
-      'A majestic golden eagle soaring through misty mountain peaks at sunrise with dramatic lighting',
-      'Close-up portrait of a fashion model with avant-garde makeup, studio lighting, high contrast shadows',
-      'Cozy Scandinavian living room with natural wood furniture, indoor plants, and soft morning sunlight',
-      'Futuristic cyberpunk street market at night with neon signs, rain-slicked pavement, and holographic displays',
-      'Elegant product photography of luxury perfume bottle on marble surface with soft reflections',
-      'Whimsical floating islands connected by rope bridges in a pastel sky with dreamy clouds',
-      'Macro close-up of morning dew drops on vibrant flower petals with bokeh background',
-      'Modern workspace desk setup with laptop, coffee, notebook, and succulent plants from above',
-      'Mystical forest path with ancient trees, glowing fireflies, and ethereal light beams through fog',
-      'Architectural detail of contemporary glass building facade with geometric patterns and reflections',
-      'Vibrant street food vendor stall with colorful ingredients, steam rising, and warm lighting',
-      'Serene Japanese zen garden with raked sand, moss-covered stones, and cherry blossom petals',
-      'Dynamic action shot of athlete mid-jump against dramatic sunset sky, silhouette effect',
-      'Rustic farmhouse kitchen with copper pots, fresh herbs, wooden cutting boards, and natural textures',
-      'Abstract fluid art with swirling metallic gold, deep blue, and emerald green organic patterns',
+      'Customer Support AI - Automatic AI calls to handle customer inquiries, troubleshooting, and order status 24/7',
+      'AI Receptionist - Intelligent call answering system for appointment scheduling, call routing, and basic inquiries',
+      'Sales Outreach AI - Automated outbound sales calls for lead qualification, product demos, and follow-ups',
+      'Account Management AI - Proactive customer check-ins, renewal reminders, and upsell opportunities via automated calls',
     ],
-    options: {
-      title: 'Choose a style',
-      items: [
-        { id: 'photorealistic', name: 'Photorealistic', image: '/images/image-styles/photorealistic_eagle-min.png' },
-        { id: 'watercolor', name: 'Watercolor', image: '/images/image-styles/watercolor_garden-min.png' },
-        { id: 'digital-art', name: 'Digital Art', image: '/images/image-styles/digital_art_cyberpunk-min.png' },
-        { id: 'oil-painting', name: 'Oil Painting', image: '/images/image-styles/oil_painting_villa-min.png' },
-        { id: 'minimalist', name: 'Minimalist', image: '/images/image-styles/minimalist_coffee-min.png' },
-        { id: 'isometric', name: 'Isometric', image: '/images/image-styles/isometric_bedroom-min.png' },
-        { id: 'vintage', name: 'Vintage', image: '/images/image-styles/vintage_diner-min.png' },
-        { id: 'comic', name: 'Comic Book', image: '/images/image-styles/comic_book_robot-min.png' },
-        { id: 'neon', name: 'Neon', image: '/images/image-styles/neon_jellyfish-min.png' },
-        { id: 'pastel', name: 'Pastel', image: '/images/image-styles/pastel_landscape-min.png' },
-        { id: 'geometric', name: 'Geometric', image: '/images/image-styles/geometric_crystal-min.png' },
-        { id: 'abstract', name: 'Abstract', image: '/images/image-styles/abstract_organic-min.png' },
-        { id: 'anime', name: 'Anime', image: '/images/image-styles/anime_forest-min.png' },
-        { id: 'impressionist', name: 'Impressionist', image: '/images/image-styles/impressionist_garden-min.png' },
-        { id: 'surreal', name: 'Surreal', image: '/images/image-styles/surreal_islands-min.png' },
-      ],
-    },
   },
   {
-    id: 'slides',
-    label: 'Slides',
-    icon: <Presentation className="w-4 h-4" />,
+    id: 'marketing',
+    label: 'Marketing Agent',
+    icon: <Megaphone className="w-4 h-4" />,
     samplePrompts: [
-      'Create a Series A pitch deck with market size, traction, and financial projections',
-      'Build a Q4 business review showcasing KPIs, wins, and strategic initiatives',
-      'Design a product launch presentation with demo videos and customer testimonials',
-      'Develop a sales enablement deck explaining our value prop and competitive advantages',
-      'Create an investor update highlighting key metrics and upcoming milestones',
-      'Build a customer case study presentation showing ROI and success metrics',
-      'Design an all-hands presentation covering company updates and vision',
-      'Develop a training deck for new product features and workflows',
-      'Create a conference talk about scaling engineering teams',
-      'Build a board meeting presentation with strategic recommendations',
+      'Send bulk promotional SMS campaign to 10,000 customers with personalized discount codes and tracking',
+      'Create automated email marketing campaign for product launch with A/B testing and bulk sending to 50K subscribers',
+      'Build SMS drip campaign for appointment reminders and confirmations with two-way messaging',
+      'Design bulk email newsletter system with segmentation, personalization, and delivery tracking',
+      'Develop SMS and email marketing automation for abandoned cart recovery with multi-channel approach',
+      'Create bulk SMS notification system for flash sales and limited-time offers with click tracking',
+      'Build automated email welcome series with bulk onboarding messages and engagement tracking',
+      'Design SMS marketing campaign for event promotions with bulk sending and RSVP collection',
+      'Develop re-engagement campaign using bulk SMS and email to win back inactive customers',
+      'Create lead nurturing workflow with automated bulk SMS and email sequences based on behavior triggers',
     ],
-    options: {
-      title: 'Choose a template',
-      items: [
-        { id: 'modern', name: 'Modern', description: 'Clean and professional' },
-        { id: 'bold', name: 'Bold', description: 'High impact design' },
-        { id: 'elegant', name: 'Elegant', description: 'Sophisticated style' },
-        { id: 'tech', name: 'Tech', description: 'Technology focused' },
-        { id: 'creative', name: 'Creative', description: 'Artistic and unique' },
-        { id: 'minimal', name: 'Minimal', description: 'Simple and clear' },
-        { id: 'corporate', name: 'Corporate', description: 'Business standard' },
-        { id: 'vibrant', name: 'Vibrant', description: 'Colorful and energetic' },
-        { id: 'startup', name: 'Startup', description: 'Dynamic and innovative' },
-        { id: 'professional', name: 'Professional', description: 'Polished and refined' },
-        { id: 'dark', name: 'Dark', description: 'Dark mode aesthetic' },
-        { id: 'playful', name: 'Playful', description: 'Fun and engaging' },
-        { id: 'sophisticated', name: 'Sophisticated', description: 'Premium luxury feel' },
-        { id: 'gradient', name: 'Gradient', description: 'Modern gradients' },
-        { id: 'monochrome', name: 'Monochrome', description: 'Black and white' },
-        { id: 'futuristic', name: 'Futuristic', description: 'Cutting-edge design' },
-      ],
-    },
+  },
+  // Hidden: Image mode
+  // {
+  //   id: 'image',
+  //   label: 'Image',
+  //   icon: <ImageIcon className="w-4 h-4" />,
+  //   samplePrompts: [
+  //     'A majestic golden eagle soaring through misty mountain peaks at sunrise with dramatic lighting',
+  //     'Close-up portrait of a fashion model with avant-garde makeup, studio lighting, high contrast shadows',
+  //     'Cozy Scandinavian living room with natural wood furniture, indoor plants, and soft morning sunlight',
+  //     'Futuristic cyberpunk street market at night with neon signs, rain-slicked pavement, and holographic displays',
+  //     'Elegant product photography of luxury perfume bottle on marble surface with soft reflections',
+  //     'Whimsical floating islands connected by rope bridges in a pastel sky with dreamy clouds',
+  //     'Macro close-up of morning dew drops on vibrant flower petals with bokeh background',
+  //     'Modern workspace desk setup with laptop, coffee, notebook, and succulent plants from above',
+  //     'Mystical forest path with ancient trees, glowing fireflies, and ethereal light beams through fog',
+  //     'Architectural detail of contemporary glass building facade with geometric patterns and reflections',
+  //     'Vibrant street food vendor stall with colorful ingredients, steam rising, and warm lighting',
+  //     'Serene Japanese zen garden with raked sand, moss-covered stones, and cherry blossom petals',
+  //     'Dynamic action shot of athlete mid-jump against dramatic sunset sky, silhouette effect',
+  //     'Rustic farmhouse kitchen with copper pots, fresh herbs, wooden cutting boards, and natural textures',
+  //     'Abstract fluid art with swirling metallic gold, deep blue, and emerald green organic patterns',
+  //   ],
+  //   options: {
+  //     title: 'Choose a style',
+  //     items: [
+  //       { id: 'photorealistic', name: 'Photorealistic', image: '/images/image-styles/photorealistic_eagle-min.png' },
+  //       { id: 'watercolor', name: 'Watercolor', image: '/images/image-styles/watercolor_garden-min.png' },
+  //       { id: 'digital-art', name: 'Digital Art', image: '/images/image-styles/digital_art_cyberpunk-min.png' },
+  //       { id: 'oil-painting', name: 'Oil Painting', image: '/images/image-styles/oil_painting_villa-min.png' },
+  //       { id: 'minimalist', name: 'Minimalist', image: '/images/image-styles/minimalist_coffee-min.png' },
+  //       { id: 'isometric', name: 'Isometric', image: '/images/image-styles/isometric_bedroom-min.png' },
+  //       { id: 'vintage', name: 'Vintage', image: '/images/image-styles/vintage_diner-min.png' },
+  //       { id: 'comic', name: 'Comic Book', image: '/images/image-styles/comic_book_robot-min.png' },
+  //       { id: 'neon', name: 'Neon', image: '/images/image-styles/neon_jellyfish-min.png' },
+  //       { id: 'pastel', name: 'Pastel', image: '/images/image-styles/pastel_landscape-min.png' },
+  //       { id: 'geometric', name: 'Geometric', image: '/images/image-styles/geometric_crystal-min.png' },
+  //       { id: 'abstract', name: 'Abstract', image: '/images/image-styles/abstract_organic-min.png' },
+  //       { id: 'anime', name: 'Anime', image: '/images/image-styles/anime_forest-min.png' },
+  //       { id: 'impressionist', name: 'Impressionist', image: '/images/image-styles/impressionist_garden-min.png' },
+  //       { id: 'surreal', name: 'Surreal', image: '/images/image-styles/surreal_islands-min.png' },
+  //     ],
+  //   },
+  // },
+  // Hidden: Slides mode
+  // {
+  //   id: 'slides',
+  //   label: 'Slides',
+  //   icon: <Presentation className="w-4 h-4" />,
+  //   samplePrompts: [
+  //     'Create a Series A pitch deck with market size, traction, and financial projections',
+  //     'Build a Q4 business review showcasing KPIs, wins, and strategic initiatives',
+  //     'Design a product launch presentation with demo videos and customer testimonials',
+  //     'Develop a sales enablement deck explaining our value prop and competitive advantages',
+  //     'Create an investor update highlighting key metrics and upcoming milestones',
+  //     'Build a customer case study presentation showing ROI and success metrics',
+  //     'Design an all-hands presentation covering company updates and vision',
+  //     'Develop a training deck for new product features and workflows',
+  //     'Create a conference talk about scaling engineering teams',
+  //     'Build a board meeting presentation with strategic recommendations',
+  //   ],
+  //   options: {
+  //     title: 'Choose a template',
+  //     items: [
+  //       { id: 'modern', name: 'Modern', description: 'Clean and professional' },
+  //       { id: 'bold', name: 'Bold', description: 'High impact design' },
+  //       { id: 'elegant', name: 'Elegant', description: 'Sophisticated style' },
+  //       { id: 'tech', name: 'Tech', description: 'Technology focused' },
+  //       { id: 'creative', name: 'Creative', description: 'Artistic and unique' },
+  //       { id: 'minimal', name: 'Minimal', description: 'Simple and clear' },
+  //       { id: 'corporate', name: 'Corporate', description: 'Business standard' },
+  //       { id: 'vibrant', name: 'Vibrant', description: 'Colorful and energetic' },
+  //       { id: 'startup', name: 'Startup', description: 'Dynamic and innovative' },
+  //       { id: 'professional', name: 'Professional', description: 'Polished and refined' },
+  //       { id: 'dark', name: 'Dark', description: 'Dark mode aesthetic' },
+  //       { id: 'playful', name: 'Playful', description: 'Fun and engaging' },
+  //       { id: 'sophisticated', name: 'Sophisticated', description: 'Premium luxury feel' },
+  //       { id: 'gradient', name: 'Gradient', description: 'Modern gradients' },
+  //       { id: 'monochrome', name: 'Monochrome', description: 'Black and white' },
+  //       { id: 'futuristic', name: 'Futuristic', description: 'Cutting-edge design' },
+  //     ],
+  //   },
+  // },
+  {
+    id: 'company',
+    label: 'Company',
+    icon: <Building2 className="w-4 h-4" />,
+    samplePrompts: [
+      'Find B2B SaaS companies with 50-200 employees showing high buyer intent signals - recent funding, tech stack changes, and hiring surges',
+      'Identify enterprise companies actively evaluating CRM solutions with budget approval timeline in next quarter',
+      'Build list of mid-market companies with strong buying signals - website visits, content downloads, and competitor research activity',
+      'Find companies in healthcare sector showing purchase intent through job postings for IT infrastructure roles and RFP activity',
+      'Identify fintech startups with Series A-B funding demonstrating buyer intent via demo requests and pricing page engagement',
+      'Discover companies experiencing rapid growth (50%+ YoY) with intent signals like technology migration and vendor evaluation',
+      'Find retail companies with buying intent indicators - digital transformation projects, increased web traffic, and C-level changes',
+      'Identify manufacturing firms showing purchase signals through software evaluation, compliance needs, and modernization initiatives',
+      'Build prospect list of companies with intent data - G2 searches, competitor comparisons, and solution research behavior',
+      'Find companies matching ideal customer profile with strong intent signals - webinar attendance, case study views, and contact form submissions',
+    ],
+  },
+  {
+    id: 'people',
+    label: 'People',
+    icon: <Users className="w-4 h-4" />,
+    samplePrompts: [
+      'Find VP of Sales contacts at companies showing high buyer intent - recent content downloads, demo requests, and pricing inquiries',
+      'Identify decision-makers with strong purchase signals - attending industry events, downloading whitepapers, and engaging with competitor content',
+      'Build list of IT Directors demonstrating buyer intent through solution research, LinkedIn engagement, and vendor evaluation activities',
+      'Find CMO contacts at companies with buying signals - increased marketing spend, new tool adoption, and team expansion',
+      'Identify CFOs and Finance leaders showing intent through ROI calculator usage, pricing page visits, and consultation requests',
+      'Discover CTO contacts exhibiting purchase intent via technical documentation downloads, API exploration, and integration inquiries',
+      'Find VP Engineering contacts with buying signals - GitHub activity, tech stack research, and architecture planning discussions',
+      'Identify procurement and operations leaders showing intent through RFP participation, vendor meetings, and budget allocation signals',
+      'Build prospect list of C-level contacts with strong intent data - multiple touchpoints, email engagement, and referral discussions',
+      'Find department heads demonstrating buyer intent through trial signups, feature comparison research, and implementation timeline inquiries',
+    ],
+  },
+  {
+    id: 'research',
+    label: 'Research',
+    icon: <Search className="w-4 h-4" />,
+    samplePrompts: [
+      'Analyze emerging trends in quantum computing and potential business applications',
+      'Research top 10 competitors in the AI-powered CRM space with feature comparison',
+      'Investigate regulatory requirements for launching a fintech app in the EU',
+      'Compile market analysis on electric vehicle adoption rates across major markets',
+      'Study the impact of remote work on commercial real estate demand in major cities',
+      'Research Web3 adoption patterns among Fortune 500 companies',
+      'Analyze consumer sentiment towards sustainable fashion brands',
+      'Investigate the latest developments in gene therapy for rare diseases',
+      'Study pricing strategies of successful D2C subscription box companies',
+      'Research the competitive landscape of AI-powered cybersecurity solutions',
+    ],
   },
   {
     id: 'data',
@@ -210,41 +297,7 @@ const modes: Mode[] = [
         { id: 'meeting-notes', name: 'Meeting Notes', description: 'Meeting minutes' },
       ],
     },
-  },
-  {
-    id: 'people',
-    label: 'People',
-    icon: <Users className="w-4 h-4" />,
-    samplePrompts: [
-      'Find VP of Engineering candidates at Series B+ AI/ML startups in San Francisco Bay Area with 10+ years experience and proven track record scaling engineering teams',
-      'Build lead list of CMOs at B2B SaaS companies ($10M-$50M ARR) who recently raised Series A/B funding - include email patterns and tech stack',
-      'Research Senior Blockchain Engineers with Solidity/Rust experience at top crypto projects, open to relocation to Dubai or Singapore',
-      'Generate prospect list of technical founders at Seed-Series A startups in Enterprise AI who raised $2M-$15M in last 6 months',
-      'Identify Senior Product Managers at fintech companies with 5-10 years experience from FAANG or unicorns, skilled in 0-1 product development',
-      'Find CIOs and VP Engineering at mid-market healthcare IT companies (500-5000 employees) with $500K+ IT budgets planning cloud migration',
-      'Research VP Sales at B2B SaaS companies showing 100%+ YoY growth, with 7+ years closing $100K+ deals and PLG experience',
-      'Build list of CTOs at enterprise companies actively implementing AI infrastructure with multi-million dollar budgets in 2024',
-      'Find Senior UX/UI Designers with mobile-first consumer app experience and 1M+ user portfolios, actively looking or open to opportunities',
-      'Identify Senior DevOps Engineers at cloud-native startups with Kubernetes/Terraform expertise and 5-8 years building infrastructure for 10M+ users',
-    ],
-  },
-  {
-    id: 'research',
-    label: 'Research',
-    icon: <Search className="w-4 h-4" />,
-    samplePrompts: [
-      'Analyze emerging trends in quantum computing and potential business applications',
-      'Research top 10 competitors in the AI-powered CRM space with feature comparison',
-      'Investigate regulatory requirements for launching a fintech app in the EU',
-      'Compile market analysis on electric vehicle adoption rates across major markets',
-      'Study the impact of remote work on commercial real estate demand in major cities',
-      'Research Web3 adoption patterns among Fortune 500 companies',
-      'Analyze consumer sentiment towards sustainable fashion brands',
-      'Investigate the latest developments in gene therapy for rare diseases',
-      'Study pricing strategies of successful D2C subscription box companies',
-      'Research the competitive landscape of AI-powered cybersecurity solutions',
-    ],
-  },
+  }
 ];
 
 // Helper function to get random prompts
@@ -1095,10 +1148,11 @@ export function SunaModesPanel({
   selectedOutputFormat: controlledSelectedOutputFormat,
   onOutputFormatChange,
   selectedTemplate: controlledSelectedTemplate,
-  onTemplateChange
+  onTemplateChange,
+  showVoiceDemo = false
 }: SunaModesPanelProps) {
   const currentMode = selectedMode ? modes.find((m) => m.id === selectedMode) : null;
-  const promptCount = isMobile ? 2 : 4;
+  const promptCount = isMobile ? 4 : 6;
   
   // State to track current random selection of prompts
   const [randomizedPrompts, setRandomizedPrompts] = useState<string[]>([]);
@@ -1113,6 +1167,9 @@ export function SunaModesPanel({
   const [uncontrolledSelectedOutputFormat, setUncontrolledSelectedOutputFormat] = useState<string | null>(null);
   const selectedOutputFormat = controlledSelectedOutputFormat ?? uncontrolledSelectedOutputFormat;
   const setSelectedOutputFormat = onOutputFormatChange ?? setUncontrolledSelectedOutputFormat;
+
+  // State for phone number in demo form
+  const [phoneNumber, setPhoneNumber] = useState<string>();
 
   // Randomize prompts when mode changes or on mount
   useEffect(() => {
@@ -1179,56 +1236,165 @@ export function SunaModesPanel({
         </div>
       )}
 
-      {/* Sample Prompts - Google List Style (for research, people) */}
-      {selectedMode && displayedPrompts && ['research', 'people'].includes(selectedMode) && (
-        <div className="space-y-2 animate-in fade-in-0 zoom-in-95 duration-300">
-          <div className="flex items-center justify-between px-1">
-            <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Sample prompts</h3>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleRefreshPrompts}
-              className="h-7 px-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
+      {/* Voice Agent - Custom Design with Demo */}
+      {selectedMode === 'voice' && currentMode && (
+        <div className="space-y-6 animate-in fade-in-0 zoom-in-95 duration-300">
+          {/* Use Cases Grid */}
+          <div className="space-y-3">
+            <h3 className="text-sm font-medium text-muted-foreground">Choose your AI voice agent use case</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {currentMode.samplePrompts.map((prompt, index) => {
+                const [title, description] = prompt.split(' - ');
+                return (
+                  <motion.div
+                    key={`${prompt}-${index}`}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: index * 0.1,
+                      ease: "easeOut"
+                    }}
+                  >
+                    <Card
+                      className="p-5 cursor-pointer hover:bg-primary/5 transition-all duration-200 group border border-border rounded-xl h-full"
+                      onClick={() => handlePromptSelect(prompt)}
+                    >
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex items-center gap-2">
+                            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                              <Phone className="w-5 h-5 text-primary" />
+                            </div>
+                            <div className="flex-1">
+                              <h4 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                                {title}
+                              </h4>
+                            </div>
+                          </div>
+                          <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary shrink-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </div>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {description}
+                        </p>
+                      </div>
+                    </Card>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Demo Section - Only show on get-started page */}
+          {showVoiceDemo && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
+              className="space-y-3"
             >
-              <motion.div
-                animate={{ rotate: isRefreshing ? 360 : 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              >
-                <RefreshCw className="w-3.5 h-3.5" />
-              </motion.div>
-            </Button>
-          </div>
-          <div className="space-y-1">
-            {displayedPrompts.map((prompt, index) => (
-              <motion.div
-                key={`${prompt}-${index}`}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{
-                  duration: 0.2,
-                  delay: index * 0.03,
-                  ease: "easeOut"
-                }}
-                className="group cursor-pointer rounded-lg hover:bg-accent/50 transition-colors duration-150"
-                onClick={() => handlePromptSelect(prompt)}
-              >
-                <div className="flex items-center justify-between gap-3 px-3 py-2.5">
-                  <p className="text-sm text-foreground/70 group-hover:text-foreground transition-colors leading-relaxed flex-1">
-                    {prompt}
+              <h3 className="text-sm font-medium text-muted-foreground">Get a live demo call</h3>
+              <Card className="p-6 border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-background to-background rounded-xl">
+              <div className="flex flex-col md:flex-row gap-8">
+                {/* Left side - Info */}
+                <div className="flex-1 space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-primary/15 flex items-center justify-center shrink-0">
+                      <Phone className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="text-base font-semibold text-foreground">Experience AI Voice Agent</h4>
+                      <p className="text-sm text-muted-foreground">Get an instant demo call</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-foreground/80 leading-relaxed">
+                    Our AI will call you within minutes to demonstrate real-time conversation capabilities, intelligent routing, and natural language understanding.
                   </p>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-muted-foreground/40 group-hover:text-foreground/60 shrink-0 transition-all duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-sm text-foreground/70">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                      <span>20+ Concurrent calls</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-foreground/70">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                      <span>Natural AI conversations</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-foreground/70">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                      <span>24/7 availability</span>
+                    </div>
+                  </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+
+                {/* Right side - Form */}
+                <div className="w-full md:w-[380px] space-y-4">
+                  <div className="space-y-3">
+                    {/* Full Name */}
+                    <div className="space-y-1.5">
+                      <label className="text-sm font-medium text-foreground">Full Name</label>
+                      <input
+                        type="text"
+                        placeholder="John Doe"
+                        className="w-full px-3 py-2 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                      />
+                    </div>
+
+                    {/* Email */}
+                    <div className="space-y-1.5">
+                      <label className="text-sm font-medium text-foreground">Email</label>
+                      <input
+                        type="email"
+                        placeholder="john@company.com"
+                        className="w-full px-3 py-2 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                      />
+                    </div>
+
+                    {/* Phone Number with Country Code */}
+                    <div className="space-y-1.5">
+                      <label className="text-sm font-medium text-foreground">Phone Number</label>
+                      <PhoneInput
+                        international
+                        defaultCountry="US"
+                        value={phoneNumber}
+                        onChange={setPhoneNumber}
+                        placeholder="Enter phone number"
+                        className="phone-input-custom"
+                        countrySelectProps={{
+                          className: "phone-country-select"
+                        }}
+                        numberInputProps={{
+                          className: "phone-number-input w-full px-3 py-2 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <Button 
+                    size="lg"
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
+                    onClick={() => handlePromptSelect('Schedule demo call for voice agent with contact information')}
+                  >
+                    <Phone className="w-4 h-4 mr-2" />
+                    Get Demo Call
+                  </Button>
+
+                  <p className="text-xs text-center text-muted-foreground">
+                    We'll call you within 2 minutes • No spam, promise 🔒
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </motion.div>
+          )}
         </div>
       )}
 
-      {/* Sample Prompts - Card Grid Style (for image, slides, data, docs) */}
-      {selectedMode && displayedPrompts && !['research', 'people'].includes(selectedMode) && (
+      {/* Sample Prompts - Card Grid Style (for marketing, company, people, research, data, docs) */}
+      {selectedMode && displayedPrompts && !['voice'].includes(selectedMode) && (
         <div className="space-y-3 animate-in fade-in-0 zoom-in-95 duration-300">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-medium text-muted-foreground">Sample prompts</h3>
+            <h3 className="text-sm font-medium text-muted-foreground">Choose your use case</h3>
             <Button
               variant="ghost"
               size="sm"
@@ -1243,29 +1409,58 @@ export function SunaModesPanel({
               </motion.div>
             </Button>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {displayedPrompts.map((prompt, index) => (
-              <motion.div
-                key={`${prompt}-${index}`}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                  duration: 0.3,
-                  delay: index * 0.05,
-                  ease: "easeOut"
-                }}
-              >
-                <Card
-                  className="p-4 cursor-pointer hover:bg-primary/5 transition-all duration-200 group border border-border rounded-xl"
-                  onClick={() => handlePromptSelect(prompt)}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {displayedPrompts.map((prompt, index) => {
+              // Get icon based on selected mode
+              const getIcon = () => {
+                switch (selectedMode) {
+                  case 'marketing':
+                    return <Megaphone className="w-5 h-5 text-primary" />;
+                  case 'company':
+                    return <Building2 className="w-5 h-5 text-primary" />;
+                  case 'people':
+                    return <Users className="w-5 h-5 text-primary" />;
+                  case 'research':
+                    return <Search className="w-5 h-5 text-primary" />;
+                  case 'data':
+                    return <BarChart3 className="w-5 h-5 text-primary" />;
+                  case 'docs':
+                    return <FileText className="w-5 h-5 text-primary" />;
+                  default:
+                    return <ArrowUpRight className="w-5 h-5 text-primary" />;
+                }
+              };
+
+              return (
+                <motion.div
+                  key={`${prompt}-${index}`}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.3,
+                    delay: index * 0.1,
+                    ease: "easeOut"
+                  }}
                 >
-                  <div className="flex items-start justify-between gap-2">
-                    <p className="text-sm text-foreground/80 leading-relaxed">{prompt}</p>
-                    <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary shrink-0 transition-colors duration-200" />
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
+                  <Card
+                    className="p-5 cursor-pointer hover:bg-primary/5 transition-all duration-200 group border border-border rounded-xl h-full"
+                    onClick={() => handlePromptSelect(prompt)}
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-start gap-2">
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                          {getIcon()}
+                        </div>
+                        <p className="text-sm text-foreground group-hover:text-primary transition-colors leading-relaxed">
+                          {prompt}
+                        </p>
+                      </div>
+                      <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary shrink-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
+                  </Card>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       )}

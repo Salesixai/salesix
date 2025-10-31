@@ -978,3 +978,62 @@
     }
   }
 }
+
+/* Custom Phone Input Styles */
+.phone-input-custom {
+  @apply w-full flex gap-2;
+}
+
+.phone-input-custom .PhoneInputInput {
+  @apply w-full px-3 py-2 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all;
+}
+
+.phone-input-custom .PhoneInputCountry {
+  @apply px-2 py-2 bg-background transition-all;
+  margin-right: 0;
+  border: none;
+  outline: none;
+}
+
+.phone-input-custom .PhoneInputCountrySelect {
+  @apply text-sm;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+.phone-input-custom .PhoneInputCountrySelect:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.phone-input-custom .PhoneInputCountryIcon {
+  @apply w-5 h-5;
+  box-shadow: none !important;
+  border: none;
+  border-radius: 2px;
+}
+
+.phone-input-custom .PhoneInputCountrySelectArrow {
+  @apply text-muted-foreground ml-1;
+  opacity: 0.5;
+  width: 0.4em;
+  height: 0.4em;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-top: -0.2em;
+}
+
+/* Make the country select full width on mobile */
+@media (max-width: 640px) {
+  .phone-input-custom {
+    @apply flex flex-col gap-2;
+  }
+  
+  .phone-input-custom .PhoneInputCountry {
+    @apply w-full rounded-lg;
+  }
+}
