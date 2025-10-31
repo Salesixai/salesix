@@ -113,6 +113,7 @@ export interface ChatInputProps {
   animatePlaceholder?: boolean;
   selectedCharts?: string[];
   selectedOutputFormat?: string | null;
+  selectedTemplate?: string | null;
   threadId?: string | null;
   projectId?: string;
 }
@@ -164,6 +165,7 @@ export const ChatInput = memo(forwardRef<ChatInputHandles, ChatInputProps>(
       animatePlaceholder = false,
       selectedCharts = [],
       selectedOutputFormat = null,
+      selectedTemplate = null,
       threadId = null,
       projectId,
     },

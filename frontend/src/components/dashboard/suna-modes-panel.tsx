@@ -30,6 +30,8 @@ interface SunaModesPanelProps {
   onChartsChange?: (charts: string[]) => void;
   selectedOutputFormat?: string | null;
   onOutputFormatChange?: (format: string | null) => void;
+  selectedTemplate?: string | null;
+  onTemplateChange?: (template: string | null) => void;
 }
 
 type ModeType = 'image' | 'slides' | 'data' | 'docs' | 'people' | 'research';
@@ -1091,7 +1093,9 @@ export function SunaModesPanel({
   selectedCharts: controlledSelectedCharts,
   onChartsChange,
   selectedOutputFormat: controlledSelectedOutputFormat,
-  onOutputFormatChange
+  onOutputFormatChange,
+  selectedTemplate: controlledSelectedTemplate,
+  onTemplateChange
 }: SunaModesPanelProps) {
   const currentMode = selectedMode ? modes.find((m) => m.id === selectedMode) : null;
   const promptCount = isMobile ? 2 : 4;
