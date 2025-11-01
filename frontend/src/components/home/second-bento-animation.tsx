@@ -51,7 +51,7 @@ export function SecondBentoAnimation() {
             <SocialIcon network="twitch" style={{ height: 48, width: 48 }} />
             <SocialIcon network="linkedin" style={{ height: 48, width: 48 }} />
           </OrbitingCircles>
-          
+
           {/* Additional outer ring for more tools */}
           <OrbitingCircles
             index={3}

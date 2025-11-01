@@ -138,7 +138,11 @@ export function FirstBentoAnimation() {
                     ease: 'easeOut',
                   }}
                 >
-                  <ReasoningBasic />
+                  <Reasoning>
+                    <ReasoningContent>
+                      <ReasoningResponse text="Perfect! I'll create an AI Worker that monitors your email, automatically categorizes messages, and sends you daily summaries. The agent will also draft responses for common inquiries and flag urgent messages for immediate attention." />
+                    </ReasoningContent>
+                  </Reasoning>
                 </motion.div>
               )}
             </AnimatePresence>

@@ -2,13 +2,16 @@ from typing import Dict, List, Optional, Set
 from .ai_models import Model, ModelProvider, ModelCapability, ModelPricing, ModelConfig
 from core.utils.config import config, EnvMode
 
-FREE_MODEL_ID = "moonshotai/kimi-k2"
+# SHOULD_USE_ANTHROPIC = False
+SHOULD_USE_ANTHROPIC = config.ENV_MODE == EnvMode.LOCAL and bool(config.ANTHROPIC_API_KEY)
 
-# Set premium model ID based on environment - now using Haiku 4.5 as default
-if config.ENV_MODE == EnvMode.LOCAL:
+# Set premium model ID based on environment - using MAP-tagged application inference profiles with global routing
+if SHOULD_USE_ANTHROPIC:
+    FREE_MODEL_ID = "anthropic/claude-haiku-4-5"
     PREMIUM_MODEL_ID = "anthropic/claude-haiku-4-5"
-else:  # STAGING or PRODUCTION
-    PREMIUM_MODEL_ID = "bedrock/converse/arn:aws:bedrock:us-west-2:935064898258:application-inference-profile/cyuh6gekrmmh"
+else:  
+    FREE_MODEL_ID = "bedrock/converse/arn:aws:bedrock:us-west-2:935064898258:application-inference-profile/heol2zyy5v48"
+    PREMIUM_MODEL_ID = "bedrock/converse/arn:aws:bedrock:us-west-2:935064898258:application-inference-profile/heol2zyy5v48"
 
 is_local = config.ENV_MODE == EnvMode.LOCAL
 
@@ -40,7 +43,7 @@ class ModelRegistry:
         #     recommended=True,
         #     enabled=True,
         #     config=ModelConfig()
-        ))
+        # ))
         
         # self.register(Model(
         #     id="anthropic/claude-sonnet-4-5-20250929" if is_local else "bedrock/converse/arn:aws:bedrock:us-west-2:935064898258:application-inference-profile/pe55zlhpikcf",

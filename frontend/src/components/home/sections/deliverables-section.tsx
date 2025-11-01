@@ -131,8 +131,8 @@ export function DeliverablesSection() {
   }, [scrollYProgress]);
 
   return (
-    <section 
-      ref={containerRef} 
+    <section
+      ref={containerRef}
       id="deliverables"
       className="flex flex-col items-center justify-center w-full relative"
     >
@@ -171,7 +171,7 @@ export function DeliverablesSection() {
                       <span className="text-foreground block md:inline">AI Agents for </span>
                       <span className="text-primary">{deliverables[activeIndex].type}</span>
                     </motion.h3>
-                    
+
                     <motion.p
                       className="text-muted-foreground text-balance font-medium mb-6 md:mb-8 text-sm md:text-lg leading-relaxed"
                       key={`desc-${activeIndex}`}

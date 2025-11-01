@@ -7,6 +7,13 @@ import { ModalProviders } from '@/providers/modal-providers';
 import { BackgroundAALChecker } from '@/components/auth/background-aal-checker';
 import { CompanyShowcase } from '@/components/home/sections/company-showcase';
 import { CapabilitiesSection } from '@/components/home/sections/capabilities-section';
+import { isLocalMode, isStagingMode } from '@/lib/config';
+import { HeroSection as NewHeroSection } from '@/components/home/sections/new/hero-section';
+import { AIWorkerSection } from '@/components/home/sections/new/ai-workers';
+import { SlidesSection } from '@/components/home/sections/new/slides-section';
+import { PersonalizationSection } from '@/components/home/sections/new/personalization-section';
+import { WordmarkFooter } from '@/components/home/sections/new/wordmark-footer';
+import { FAQSection } from '@/components/home/sections/faq-section';
 
 // Loading placeholder component
 const SectionLoader = ({ height = 'h-96' }: { height?: string }) => (
@@ -47,6 +54,7 @@ const FooterSection = dynamic(() => import('@/components/home/sections/footer-se
 });
 
 export default function Home() {
+
   return (
     <>
       <ModalProviders />

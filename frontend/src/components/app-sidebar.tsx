@@ -134,7 +134,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <SidebarMenu>
                 {section.items.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton 
+                    <SidebarMenuButton
                       className={`font-semibold ${item.comingSoon ? 'opacity-70 cursor-not-allowed' : ''}`}
                       asChild={!item.comingSoon}
                       isActive={isActive(item.url)}
@@ -166,7 +166,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       <SidebarFooter className="bg-transparent p-4 flex flex-row justify-between items-center">
         <div className="text-muted-foreground text-xs">Version 0.1.0</div>
-        <ThemeToggle/>
+        <ThemeToggle />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { SubmitButton } from '@/components/ui/submit-button';
 import { Input } from '@/components/ui/input';
+import { Checkbox } from '@/components/ui/checkbox';
 import GoogleSignIn from '@/components/GoogleSignIn';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { useState, useEffect, Suspense } from 'react';
@@ -15,8 +16,8 @@ import {
   CheckCircle,
   AlertCircle,
   MailCheck,
-  Loader2,
 } from 'lucide-react';
+import { KortixLoader } from '@/components/ui/kortix-loader';
 import { useAuth } from '@/components/AuthProvider';
 import { useAuthMethodTracking } from '@/lib/stores/auth-tracking';
 import { toast } from 'sonner';
@@ -32,7 +33,7 @@ import {
 } from '@/components/ui/dialog';
 import GitHubSignIn from '@/components/GithubSignIn';
 import { KortixLogo } from '@/components/sidebar/kortix-logo';
-import { Ripple } from '@/components/ui/ripple';
+import { AnimatedBg } from '@/components/home/ui/AnimatedBg';
 import { ReleaseBadge } from '@/components/auth/release-badge';
 
 function LoginContent() {
@@ -47,6 +48,7 @@ function LoginContent() {
   const isMobile = useMediaQuery('(max-width: 768px)');
   const [mounted, setMounted] = useState(false);
   const { theme, resolvedTheme } = useTheme();
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   const { wasLastMethod: wasEmailLastMethod, markAsUsed: markEmailAsUsed } = useAuthMethodTracking('email');
 
@@ -97,7 +99,7 @@ function LoginContent() {
       'success' in result &&
       result.success &&
       'redirectTo' in result
-      ) {
+    ) {
       window.location.href = result.redirectTo as string;
       return null;
     }
@@ -211,7 +213,7 @@ function LoginContent() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <KortixLoader size="large" />
       </div>
     );
   }
@@ -312,7 +314,7 @@ function LoginContent() {
                 name="email"
                 type="email"
                 placeholder="Email address"
-                className="h-10 rounded-lg"
+                className=""
                 required
               />
               <Input
@@ -320,25 +322,63 @@ function LoginContent() {
                 name="password"
                 type="password"
                 placeholder="Password"
-                className="h-10 rounded-lg"
+                className=""
                 required
               />
               {isSignUp && (
-                <Input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  placeholder="Confirm password"
-                  className="h-10 rounded-lg"
-                  required
-                />
+                <>
+                  <Input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="password"
+                    placeholder="Confirm password"
+                    className=""
+                    required
+                  />
+                  
+                  {/* GDPR Consent Checkbox */}
+                  <div className="flex items-center gap-3 my-4">
+                    <Checkbox
+                      id="gdprConsent"
+                      checked={acceptedTerms}
+                      onCheckedChange={(checked) => setAcceptedTerms(checked === true)}
+                      required
+                    />
+                    <label 
+                      htmlFor="gdprConsent" 
+                      className="text-sm text-muted-foreground leading-none cursor-pointer select-none"
+                    >
+                      I accept the{' '}
+                      <a 
+                        href="https://www.kortix.com/legal?tab=privacy" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline underline-offset-2 transition-colors"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Privacy Policy
+                      </a>
+                      {' '}and{' '}
+                      <a 
+                        href="https://www.kortix.com/legal?tab=terms"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline underline-offset-2 transition-colors"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Terms of Service
+                      </a>
+                    </label>
+                  </div>
+                </>
               )}
               <div className="pt-2">
                 <div className="relative">
                   <SubmitButton
                     formAction={isSignUp ? handleSignUp : handleSignIn}
-                    className="w-full h-10 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors rounded-lg"
+                    className="w-full h-10"
                     pendingText={isSignUp ? "Creating account..." : "Signing in..."}
+                    disabled={isSignUp && !acceptedTerms}
                   >
                     {isSignUp ? 'Create account' : 'Sign in'}
                   </SubmitButton>
@@ -350,7 +390,7 @@ function LoginContent() {
                 </div>
               </div>
             </form>
-            
+
             <div className="mt-4 space-y-3 text-center text-sm">
               {!isSignUp && (
                 <button
@@ -361,17 +401,17 @@ function LoginContent() {
                   Forgot password?
                 </button>
               )}
-              
+
               <div>
                 <Link
-                  href={isSignUp 
+                  href={isSignUp
                     ? `/auth${returnUrl ? `?returnUrl=${returnUrl}` : ''}`
                     : `/auth?mode=signup${returnUrl ? `&returnUrl=${returnUrl}` : ''}`
                   }
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  {isSignUp 
-                    ? 'Already have an account? Sign in' 
+                  {isSignUp
+                    ? 'Already have an account? Sign in'
                     : "Don't have an account? Sign up"
                   }
                 </Link>
@@ -379,9 +419,22 @@ function LoginContent() {
             </div>
           </div>
         </div>
-        <div className="hidden lg:flex flex-1 items-center justify-center bg-sidebar relative overflow-hidden">
-          <div className="absolute inset-0">
-            <Ripple />
+        <div className="hidden lg:flex flex-1 items-center justify-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-accent/10" />
+          <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+            <AnimatedBg
+              variant="hero"
+              customArcs={{
+                left: [
+                  { pos: { left: -120, top: 150 }, opacity: 0.15 },
+                  { pos: { left: -120, top: 400 }, opacity: 0.18 },
+                ],
+                right: [
+                  { pos: { right: -150, top: 50 }, opacity: 0.2 },
+                  { pos: { right: 10, top: 650 }, opacity: 0.17 },
+                ]
+              }}
+            />
           </div>
           <div className="relative z-10">
             <KortixLogo size={100} />
@@ -405,16 +458,15 @@ function LoginContent() {
               placeholder="Email address"
               value={forgotPasswordEmail}
               onChange={(e) => setForgotPasswordEmail(e.target.value)}
-              className="h-11 rounded-xl"
+              className=""
               required
             />
             {forgotPasswordStatus.message && (
               <div
-                className={`p-3 rounded-md flex items-center gap-3 ${
-                  forgotPasswordStatus.success
-                    ? 'bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-800 dark:text-green-400'
-                    : 'bg-destructive/10 border border-destructive/20 text-destructive'
-                }`}
+                className={`p-3 rounded-md flex items-center gap-3 ${forgotPasswordStatus.success
+                  ? 'bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-800 dark:text-green-400'
+                  : 'bg-destructive/10 border border-destructive/20 text-destructive'
+                  }`}
               >
                 {forgotPasswordStatus.success ? (
                   <CheckCircle className="h-4 w-4 flex-shrink-0" />

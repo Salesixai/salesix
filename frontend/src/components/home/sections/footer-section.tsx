@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import { KortixLogo } from '@/components/sidebar/kortix-logo';
 
 export function FooterSection() {
   const tablet = useMediaQuery('(max-width: 1024px)');

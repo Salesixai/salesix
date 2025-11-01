@@ -77,7 +77,9 @@ export function useThread(
       return res.json();
     },
     enabled: !!threadId,
-    staleTime: 5 * 60 * 1000,
+    staleTime: 0, // Always refetch to get latest sandbox data
+    refetchOnMount: 'always', // Refetch sandbox on every mount
+    refetchOnWindowFocus: true, // Refetch when window gains focus
     ...options,
   });
 }
@@ -150,9 +152,9 @@ export function useShareThread(
       const shareUrl = `${FRONTEND_SHARE_URL}/share/${threadId}`;
       
       // Open native share menu
+      // Use message instead of url to prevent iOS duplication issue
       await Share.share({
-        message: shareUrl, // Android uses this
-        url: shareUrl,     // iOS uses this
+        message: shareUrl,
       });
       
       return { shareUrl };
@@ -441,8 +443,14 @@ export function useActiveAgentRuns(
         return [];
       }
     },
-    staleTime: 5 * 1000,
-    refetchInterval: 10000,
+    staleTime: 10 * 1000, // Cache for 10 seconds
+    refetchInterval: (query) => {
+      // Smart polling: only poll every 15 seconds if there are active runs
+      const hasActiveRuns = query.state.data && query.state.data.length > 0;
+      return hasActiveRuns ? 15000 : false;
+    },
+    retry: 1,
+    retryDelay: 5000,
     ...options,
   });
 }

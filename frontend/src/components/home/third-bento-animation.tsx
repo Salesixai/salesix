@@ -3,6 +3,7 @@
 import { motion, useInView, AnimatePresence } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import { Icons } from '@/components/home/icons';
+import { KortixLogo } from '@/components/sidebar/kortix-logo';
 
 interface TaskConfig {
   title: string;
