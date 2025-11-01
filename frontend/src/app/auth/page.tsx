@@ -33,8 +33,8 @@ import {
 } from '@/components/ui/dialog';
 import GitHubSignIn from '@/components/GithubSignIn';
 import { KortixLogo } from '@/components/sidebar/kortix-logo';
-import { AnimatedBg } from '@/components/home/ui/AnimatedBg';
 import { ReleaseBadge } from '@/components/auth/release-badge';
+import { Ripple } from '@/components/ui/ripple';
 
 function LoginContent() {
   const router = useRouter();
@@ -421,21 +421,7 @@ function LoginContent() {
         </div>
         <div className="hidden lg:flex flex-1 items-center justify-center relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-accent/10" />
-          <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-            <AnimatedBg
-              variant="hero"
-              customArcs={{
-                left: [
-                  { pos: { left: -120, top: 150 }, opacity: 0.15 },
-                  { pos: { left: -120, top: 400 }, opacity: 0.18 },
-                ],
-                right: [
-                  { pos: { right: -150, top: 50 }, opacity: 0.2 },
-                  { pos: { right: 10, top: 650 }, opacity: 0.17 },
-                ]
-              }}
-            />
-          </div>
+          <Ripple />
           <div className="relative z-10">
             <KortixLogo size={100} />
           </div>

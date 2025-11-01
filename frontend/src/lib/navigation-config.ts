@@ -4,6 +4,20 @@
  */
 
 /**
+ * Shared flag to track manual scrolling across components
+ * This prevents conflicts between desktop and mobile navigation scroll handlers
+ */
+let isManualScrolling = false;
+
+export function setManualScrolling(value: boolean) {
+  isManualScrolling = value;
+}
+
+export function getManualScrolling(): boolean {
+  return isManualScrolling;
+}
+
+/**
  * Map menu items to their associated sections
  * Each menu item can link to multiple sections on the page
  */
@@ -24,8 +38,9 @@ export const SCROLL_OFFSET = 100;
 /**
  * Duration for manual scroll flag timeout (in milliseconds)
  * Used to prevent scroll event conflicts during smooth scrolling
+ * Set to 1500ms to ensure it's longer than any smooth scroll animation
  */
-export const MANUAL_SCROLL_TIMEOUT = 500;
+export const MANUAL_SCROLL_TIMEOUT = 1500;
 
 /**
  * Get the menu section key for a given page section ID

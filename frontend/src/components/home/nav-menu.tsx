@@ -8,6 +8,8 @@ import {
   getActiveMenuSection,
   SCROLL_OFFSET,
   MANUAL_SCROLL_TIMEOUT,
+  getManualScrolling,
+  setManualScrolling,
 } from '@/lib/navigation-config';
 
 /**
@@ -40,7 +42,6 @@ export function NavMenu({ links }: NavMenuProps = {}) {
   const [width, setWidth] = useState(0);
   const [isReady, setIsReady] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
-  const [isManualScroll, setIsManualScroll] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -65,7 +66,7 @@ export function NavMenu({ links }: NavMenuProps = {}) {
   React.useEffect(() => {
     const handleScroll = () => {
       // Skip scroll handling during manual click scrolling or if not on homepage
-      if (isManualScroll || pathname !== '/') return;
+      if (getManualScrolling() || pathname !== '/') return;
 
       // Get the active menu section based on scroll position
       const activeMenuSection = getActiveMenuSection(SCROLL_OFFSET);
@@ -101,7 +102,7 @@ export function NavMenu({ links }: NavMenuProps = {}) {
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Initial check
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isManualScroll, pathname]);
+  }, [pathname]);
 
   const handleClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -125,8 +126,8 @@ export function NavMenu({ links }: NavMenuProps = {}) {
     const element = document.getElementById(targetId);
 
     if (element) {
-      // Set manual scroll flag
-      setIsManualScroll(true);
+      // Set shared manual scroll flag
+      setManualScrolling(true);
 
       // Immediately update nav state
       setActiveSection(targetId);
@@ -149,7 +150,7 @@ export function NavMenu({ links }: NavMenuProps = {}) {
 
       // Reset manual scroll flag after animation completes
       setTimeout(() => {
-        setIsManualScroll(false);
+        setManualScrolling(false);
       }, MANUAL_SCROLL_TIMEOUT);
     }
   };

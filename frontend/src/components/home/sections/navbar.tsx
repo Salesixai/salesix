@@ -13,7 +13,7 @@ import { useTheme } from 'next-themes';
 import { useAuth } from '@/components/AuthProvider';
 import { useGitHubStars } from '@/hooks/use-github-stars';
 import { useRouter, usePathname } from 'next/navigation';
-import { getActiveMenuSection, SCROLL_OFFSET } from '@/lib/navigation-config';
+import { getActiveMenuSection, SCROLL_OFFSET, getManualScrolling, setManualScrolling } from '@/lib/navigation-config';
 
 const overlayVariants = {
   hidden: { opacity: 0 },
@@ -83,7 +83,8 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (pathname !== '/') return;
+      // Skip scroll handling during manual click scrolling or if not on homepage
+      if (getManualScrolling() || pathname !== '/') return;
 
       // Get the active menu section based on scroll position
       const activeMenuSection = getActiveMenuSection(SCROLL_OFFSET);
@@ -264,10 +265,23 @@ export function Navbar() {
                               return;
                             }
                             
-                            const element = document.getElementById(
-                              item.href.substring(1),
-                            );
-                            element?.scrollIntoView({ behavior: 'smooth' });
+                            const targetId = item.href.substring(1);
+                            const element = document.getElementById(targetId);
+                            
+                            if (element) {
+                              // Set shared manual scroll flag to prevent scroll listener interference
+                              setManualScrolling(true);
+                              setActiveSection(targetId);
+                              
+                              // Smooth scroll to element
+                              element.scrollIntoView({ behavior: 'smooth' });
+                              
+                              // Reset manual scroll flag after animation completes
+                              setTimeout(() => {
+                                setManualScrolling(false);
+                              }, 1500);
+                            }
+                            
                             setIsDrawerOpen(false);
                           }}
                           className={`underline-offset-4 hover:text-primary/80 transition-colors ${
