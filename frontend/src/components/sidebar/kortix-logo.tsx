@@ -19,16 +19,3 @@ export function KortixLogo({ size = 24 }: KortixLogoProps) {
       />
     );
   }
-
-  // Default symbol variant behavior (unchanged)
-  return (
-    <Image
-      src="/kortix-symbol.svg"
-      alt="Kortix"
-      width={size}
-      height={size}
-      className={cn(`${shouldInvert ? 'invert' : ''} flex-shrink-0`, className)}
-      style={{ width: size, height: size, minWidth: size, minHeight: size }}
-    />
-  );
-}
