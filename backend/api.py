@@ -132,7 +132,7 @@ async def log_requests_middleware(request: Request, call_next):
         raise
 
 # Define allowed origins based on environment
-allowed_origins = ["https://www.kortix.com", "https://kortix.com", "https://www.suna.so", "https://suna.so"]
+allowed_origins = ["https://www.kortix.com", "https://kortix.com", "https://www.suna.so", "https://suna.so", "https://salesix.ai"]
 allow_origin_regex = None
 
 # Add staging-specific origins
@@ -151,10 +151,7 @@ if config.ENV_MODE == EnvMode.STAGING:
 if config.ENV_MODE == EnvMode.PRODUCTION:
     allowed_origins.append("http://localhost:3000")
     allowed_origins.append("http://127.0.0.1:3000")
-    allowed_origins.append("https://salesix.ai")
-    allowed_origins.append("https://api.salesix.ai")
 
-    allow_origin_regex = r"https://.*(salesix.ai)"
 
 app.add_middleware(
     CORSMiddleware,
