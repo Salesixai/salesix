@@ -152,6 +152,7 @@ if config.ENV_MODE == EnvMode.PRODUCTION:
     allowed_origins.append("http://localhost:3000")
     allowed_origins.append("http://127.0.0.1:3000")
     allowed_origins.append("https://salesix.ai")
+    allowed_origins.append("https://api.salesix.ai")
 
     allow_origin_regex = r"https://.*(salesix.ai)"
 
