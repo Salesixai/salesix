@@ -1,6 +1,6 @@
 'use client';
 
-import { GrainText } from '@/components/ui/grain-text';
+// import { GrainText } from '@/components/ui/grain-text';
 import { Presentation, Code, Shield, Headphones } from 'lucide-react';
 import { CheckCircle2 } from 'lucide-react';
 import React from 'react';
