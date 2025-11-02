@@ -33,7 +33,7 @@ import { useSubscription, useSubscriptionCommitment } from '@/hooks/react-query'
 import { useAuth } from '@/components/AuthProvider';
 import posthog from 'posthog-js';
 import { Badge } from '@/components/ui/badge';
-import { AnimatedBg } from '@/components/home/ui/AnimatedBg';
+// import { AnimatedBg } from '@/components/home/ui/AnimatedBg';
 
 // Constants
 export const SUBSCRIPTION_PLANS = {
@@ -490,7 +490,7 @@ function PricingTier({
       )}
     >
       {/* AnimatedBg for Ultra plan */}
-      {isUltraPlan && (
+      {/* {isUltraPlan && (
         <AnimatedBg
           variant="header"
           blurMultiplier={0.8}
@@ -524,29 +524,14 @@ function PricingTier({
             ],
           }}
         />
-      )}
+      )} */}
 
       <div className={cn(
         "flex flex-col gap-3 relative z-10",
         insideDialog ? "p-3" : "p-4"
       )}>
-        <div className="flex items-center gap-2">
-          <div className="bg-black dark:hidden rounded-full px-2 py-1 flex items-center justify-center w-fit">
-            <NextImage
-              src={getPlanIcon(tier.name)}
-              alt={tier.name}
-              width={24}
-              height={24}
-              className="h-[24px] w-auto"
-            />
-          </div>
-          <NextImage
-            src={getPlanIcon(tier.name)}
-            alt={tier.name}
-            width={24}
-            height={24}
-            className="h-[24px] w-auto hidden dark:block"
-          />
+        <div className="flex items-center justify-between gap-2">
+          <h3 className="text-2xl font-semibold">{tier.name}</h3>
           <div className="flex items-center gap-2">
             {tier.isPopular && (
               <Badge variant='outline'>Popular</Badge>
