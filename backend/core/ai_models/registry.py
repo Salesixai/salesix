@@ -166,10 +166,10 @@ class ModelRegistry:
         
         # Commented out OpenAI models as requested
         self.register(Model(
-            id="openai/gpt-5",
-            name="GPT-5",
+            id="openai/gpt-4.1",
+            name="GPT-4",
             provider=ModelProvider.OPENAI,
-            aliases=["gpt-5", "GPT-5"],
+            aliases=["gpt-4.1", "GPT-4.1"],
             context_window=400_000,
             capabilities=[
                 ModelCapability.CHAT,
@@ -187,10 +187,10 @@ class ModelRegistry:
         ))
         
         self.register(Model(
-            id="openai/gpt-5-mini",
-            name="GPT-5 Mini",
+            id="openai/gpt-4.1-mini",
+            name="GPT-4.1 Mini",
             provider=ModelProvider.OPENAI,
-            aliases=["gpt-5-mini", "GPT-5 Mini"],
+            aliases=["gpt-4.1-mini", "GPT-4.1 Mini"],
             context_window=400_000,
             capabilities=[
                 ModelCapability.CHAT,
