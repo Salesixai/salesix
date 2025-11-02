@@ -5,15 +5,7 @@ import { Suspense } from 'react';
 import { HeroSection } from '@/components/home/sections/hero-section';
 import { ModalProviders } from '@/providers/modal-providers';
 import { BackgroundAALChecker } from '@/components/auth/background-aal-checker';
-import { CompanyShowcase } from '@/components/home/sections/company-showcase';
 import { CapabilitiesSection } from '@/components/home/sections/capabilities-section';
-import { isLocalMode, isStagingMode } from '@/lib/config';
-import { HeroSection as NewHeroSection } from '@/components/home/sections/new/hero-section';
-import { AIWorkerSection } from '@/components/home/sections/new/ai-workers';
-import { SlidesSection } from '@/components/home/sections/new/slides-section';
-import { PersonalizationSection } from '@/components/home/sections/new/personalization-section';
-import { WordmarkFooter } from '@/components/home/sections/new/wordmark-footer';
-import { FAQSection } from '@/components/home/sections/faq-section';
 
 // Loading placeholder component
 const SectionLoader = ({ height = 'h-96' }: { height?: string }) => (
@@ -29,9 +21,18 @@ const BentoSection = dynamic(() => import('@/components/home/sections/bento-sect
   ssr: false,
 });
 
+const IntegrationSection = dynamic(() => import('@/components/home/sections/integration-section').then(mod => ({ default: mod.IntegrationSection })), {
+  ssr: false,
+});
+
 const DeliverablesSection = dynamic(() => import('@/components/home/sections/deliverables-section').then(mod => ({ default: mod.DeliverablesSection })), {
   ssr: false,
 });
+
+const AIAgentsSection = dynamic(() => import('@/components/home/sections/ai-agents').then(mod => ({ default: mod.AIAgentsSection })), {
+  ssr: false,
+});
+
 
 const AgentShowcaseSection = dynamic(() => import('@/components/home/sections/agent-showcase-section').then(mod => ({ default: mod.AgentShowcaseSection })), {
   ssr: false,
@@ -67,16 +68,12 @@ export default function Home() {
             <CapabilitiesSection />
             
             <Suspense fallback={<SectionLoader />}>
-              <DeliverablesSection />
+              <AIAgentsSection />
             </Suspense>
             
             {/* Below the fold - Lazy loaded with Suspense */}
             <Suspense fallback={<SectionLoader />}>
               <FeatureSection />
-            </Suspense>
-            
-            <Suspense fallback={<SectionLoader />}>
-              <BentoSection />
             </Suspense>
             
             <Suspense fallback={<SectionLoader />}>
@@ -89,6 +86,10 @@ export default function Home() {
             
             <Suspense fallback={<SectionLoader />}>
               <PricingSection />
+            </Suspense>
+
+            <Suspense fallback={<SectionLoader />}>
+              <IntegrationSection />
             </Suspense>
             
             <Suspense fallback={<SectionLoader />}>
