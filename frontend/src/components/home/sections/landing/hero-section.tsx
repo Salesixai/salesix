@@ -279,16 +279,21 @@ export function HeroSection() {
                 onOpenChange={setShowPaymentModal}
                 showUsageLimitAlert={true}
             />
-            <div className="relative flex flex-col items-center w-full px-4 sm:px-6 pb-8 sm:pb-10">
+            {/* Responsive: Adjust horizontal padding for different screen sizes */}
+            <div className="relative flex flex-col items-center w-full px-3 sm:px-4 md:px-6 pb-0">
                 
 
-                <div className="relative z-10 pt-16 sm:pt-24 md:pt-32 mx-auto h-full w-full max-w-6xl flex flex-col items-center justify-center">
+                {/* Responsive: Reduce top padding on smaller screens */}
+                <div className="relative z-10 pt-12 sm:pt-16 md:pt-24 lg:pt-32 mx-auto h-full w-full max-w-6xl flex flex-col items-center justify-center">
 
-                    <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 pt-8 sm:pt-12 max-w-4xl mx-auto">
-                        <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-balance text-center px-2">
+                    {/* Responsive: Adjust gaps between heading elements */}
+                    <div className="flex flex-col items-center justify-center gap-2 sm:gap-3 md:gap-4 pt-6 sm:pt-8 md:pt-12 max-w-4xl mx-auto">
+                        {/* Responsive: Scale heading size from mobile to desktop */}
+                        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-balance text-center px-2">
                             <span className="text-primary block mb-1">Hire Salesix for </span>
                         </h1>
-                        <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tighter text-balance text-center mb-6">
+                        {/* Responsive: Scale rotating text size appropriately */}
+                        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tighter text-balance text-center mb-4 sm:mb-6">
                             <RotatingText 
                                 texts={['Sales Automation', 'Marketing Automation', 'Data Enrichment','Lead Generation', 'Workflow Automation', 'AI Voice Agents','Email Automation','SMS Automation', 'Research & Analysis']}
                                 className="text-secondary"
@@ -296,7 +301,8 @@ export function HeroSection() {
                         </h1>
                     </div>
 
-                    <div className="flex flex-col items-center w-full max-w-3xl mx-auto gap-2 flex-wrap justify-center px-2 sm:px-0">
+                    {/* Responsive: Adjust padding for chat input container */}
+                    <div className="flex flex-col items-center w-full max-w-3xl mx-auto gap-2 flex-wrap justify-center px-2 sm:px-3 md:px-0">
                         <div className="w-full relative">
                             <div className="relative z-10">
                                 <ChatInput
@@ -323,8 +329,9 @@ export function HeroSection() {
                     </div>
 
                     {/* Modes Panel - Below chat input, visible for Suna agent */}
+                    {/* Responsive: Adjust horizontal padding for modes panel */}
                     {isSunaAgent && (
-                        <div className="w-full max-w-3xl mx-auto mt-4 px-2 sm:px-0">
+                        <div className="w-full max-w-3xl mx-auto mt-4 px-2 sm:px-3 md:px-0">
                             <SunaModesPanel
                                 selectedMode={selectedMode}
                                 onModeSelect={setSelectedMode}

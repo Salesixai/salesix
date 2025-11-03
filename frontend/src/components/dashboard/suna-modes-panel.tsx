@@ -1262,21 +1262,29 @@ export function SunaModesPanel({
   return (
     <div className="w-full space-y-4">
       {/* Mode Tabs - Only show when no mode is selected */}
+      {/* Responsive: Added horizontal scroll for mobile devices to prevent overflow */}
       {!selectedMode && (
-        <div className="flex items-center justify-center animate-in fade-in-0 zoom-in-95 duration-300">
-          <div className="inline-flex gap-2">
-            {modes.map((mode) => (
-              <Button
-                key={mode.id}
-                variant="outline"
-                size="sm"
-                onClick={() => onModeSelect(mode.id)}
-                className="flex items-center gap-2 shrink-0 transition-all duration-200 bg-background hover:bg-accent rounded-xl text-muted-foreground hover:text-foreground border-border cursor-pointer"
-              >
-                {mode.icon}
-                <span>{mode.label}</span>
-              </Button>
-            ))}
+        <div className="w-full animate-in fade-in-0 zoom-in-95 duration-300">
+          {/* Hide scrollbar while maintaining scroll functionality */}
+          <div className="w-full overflow-x-auto scrollbar-hide">
+            {/* Responsive: Start from left on mobile/tablet/iPad to prevent cropping, center only on desktop */}
+            <div className="flex items-center justify-start lg:justify-center pb-2">
+              <div className="inline-flex gap-2 px-1">
+                {modes.map((mode) => (
+                  <Button
+                    key={mode.id}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => onModeSelect(mode.id)}
+                    className="flex items-center gap-2 shrink-0 transition-all duration-200 bg-background hover:bg-accent rounded-xl text-muted-foreground hover:text-foreground border-border cursor-pointer"
+                  >
+                    {mode.icon}
+                    {/* Prevent text wrapping on mobile */}
+                    <span className="whitespace-nowrap">{mode.label}</span>
+                  </Button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -1287,7 +1295,8 @@ export function SunaModesPanel({
           {/* Use Cases Grid */}
           <div className="space-y-3">
             <h3 className="text-sm font-medium text-muted-foreground">Choose your AI voice agent use case</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Responsive: Single column on mobile, 2 columns on small screens and up */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {currentMode.samplePrompts.map((prompt, index) => {
                 const [title, description] = prompt.split(' - ');
                 return (
@@ -1339,8 +1348,10 @@ export function SunaModesPanel({
               className="space-y-3"
             >
               <h3 className="text-sm font-medium text-muted-foreground">Get a live demo call</h3>
-              <Card className="p-6 border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-background to-background rounded-xl">
-              <div className="flex flex-col md:flex-row gap-8">
+              {/* Responsive: Reduced padding on mobile, full padding on small screens */}
+              <Card className="p-4 sm:p-6 border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-background to-background rounded-xl">
+              {/* Responsive: Stack vertically on mobile and tablet, horizontal on large screens */}
+              <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
                 {/* Left side - Info */}
                 <div className="flex-1 space-y-4">
                   <div className="flex items-center gap-3">
@@ -1372,7 +1383,8 @@ export function SunaModesPanel({
                 </div>
 
                 {/* Right side - Form */}
-                <div className="w-full md:w-[380px] space-y-4">
+                {/* Responsive: Full width on mobile, fixed width on large screens */}
+                <div className="w-full lg:w-[380px] space-y-4">
                   <div className="space-y-3">
                     {/* Full Name */}
                     <div className="space-y-1.5">
@@ -1454,7 +1466,8 @@ export function SunaModesPanel({
               </motion.div>
             </Button>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Responsive: Single column on mobile, 2 columns on small screens */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {displayedPrompts.map((prompt, index) => {
               // Get icon based on selected mode
               const getIcon = () => {
